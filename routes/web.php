@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index')->name('home');
     Route::get('about', 'FrontendController@about')->name('about');
     Route::get('news', 'FrontendController@news')->name('news');
@@ -30,7 +30,7 @@ Route::get('logout', function () {
 });
 Auth::routes();
 
-Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['web','auth']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('banners','BannerController');
     Route::resource('leaders','LeaderController');

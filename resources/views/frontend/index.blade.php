@@ -61,12 +61,16 @@
             <div class="row row-50 offset-top-2">
                 <div class="col-sm-6 col-lg-3">
                     <!-- Thumbnail Light-->
-                    <article class="thumbnail-light"><a class="thumbnail-light-media" href="single-service.html"><img
-                                    class="thumbnail-light-image" src="images/government-3-270x300.jpg" alt="" width="270"
-                                    height="300"/></a>
-                        <h5 class="thumbnail-light-title"><a href="single-service.html">City Council</a></h5>
+                    <article class="thumbnail-light">
+                        <a class="thumbnail-light-media" href="single-service.html">
+                            <img class="thumbnail-light-image" src="images/government-3-270x300.jpg" alt="" width="270" height="300"/>
+                        </a>
+                        <h5 class="thumbnail-light-title">
+                            <a href="single-service.html">City Council</a>
+                        </h5>
                     </article>
                 </div>
+
                 <div class="col-sm-6 col-lg-3">
                     <!-- Thumbnail Light-->
                     <article class="thumbnail-light"><a class="thumbnail-light-media" href="single-service.html"><img
