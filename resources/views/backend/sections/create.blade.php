@@ -1,6 +1,6 @@
 @extends('backend.main')
 
-@section('title', 'New Leader')
+@section('title', 'New Section')
 
 @section('stylesheets')
     <!--Bootstrap Datepicker [ Required ]-->
@@ -35,7 +35,6 @@
     <!--Page content-->
         <!--===================================================-->
         <div id="page-content">
-
             <div class="row">
                 <div class="col-md-12">
 
@@ -45,10 +44,21 @@
                         </div>
                         <!--Horizontal Form-->
                         <!--===================================================-->
-                        {!! Form::open(['route' => 'backend.leaders.store', 'class'=>'form-horizontal','autocomplete'=>'off', 'files' => true]) !!}
+                        {!! Form::open(['route' => 'backend.sections.store', 'class'=>'form-horizontal','autocomplete'=>'off', 'files' => true]) !!}
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
+                                    <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
+                                        {{Form::label('slug', 'Slug',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('slug', null,['class'=>'form-control','placeholder'=>'Enter Slug'])}}
+                                            @if ($errors->has('slug'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('slug') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
 
                                     <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
                                         {{Form::label('title_sw', 'Title SW',['class'=>'col-sm-3 control-label'])}}
@@ -65,7 +75,7 @@
                                     <div class="form-group{{ $errors->has('title_en') ? ' has-error' : '' }}">
                                         {{Form::label('title_en', 'Title EN',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
-                                            {{Form::text('title_en', null,['class'=>'form-control','placeholder'=>'Enter Name'])}}
+                                            {{Form::text('title_en', null,['class'=>'form-control','placeholder'=>'Enter English Title'])}}
                                             @if ($errors->has('title_en'))
                                                 <span class="help-block">
                                             <strong>{{ $errors->first('title_en') }}</strong>
@@ -74,68 +84,32 @@
                                         </div>
                                     </div>
 
-<div class="form-group {{ $errors->has('position_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('position_sw', 'Position SW',['class'=>'col-sm-3 control-label'])}}
+                                    <div class="form-group {{ $errors->has('description_sw') ? ' has-error' : '' }}">
+                                        {{Form::label('description_sw', 'Description SW',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
-                                            {{Form::text('position_sw', null,['class'=>'form-control','placeholder'=>'Enter Swahili Position'])}}
-                                            @if ($errors->has('position_sw'))
+                                            {{Form::textarea('description_sw', null,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
+                                            @if ($errors->has('description_sw'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('position_sw') }}</strong>
+                                                    <strong>{{ $errors->first('description_sw') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('position_en') ? ' has-error' : '' }}">
-                                        {{Form::label('position_en', 'Position EN',['class'=>'col-sm-3 control-label'])}}
+                                    <div class="form-group {{ $errors->has('description_en') ? ' has-error' : '' }}">
+                                        {{Form::label('description_en', 'Description EN',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
-                                            {{Form::text('position_en', null,['class'=>'form-control','placeholder'=>'Enter position in English'])}}
-                                            @if ($errors->has('position_en'))
+                                            {{Form::textarea('description_en', null,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
+                                            @if ($errors->has('description_en'))
                                                 <span class="help-block">
-                                            <strong>{{ $errors->first('position_en') }}</strong>
-                                        </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group {{ $errors->has('details_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('details_sw', 'Description SW',['class'=>'col-sm-3 control-label'])}}
-                                        <div class="col-sm-9">
-                                            {{Form::textarea('details_sw', null,['class'=>'form-control','placeholder'=>'Enter Description'])}}
-                                            @if ($errors->has('details_sw'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('details_sw') }}</strong>
+                                                    <strong>{{ $errors->first('description_en') }}</strong>
                                                 </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group {{ $errors->has('details_en') ? ' has-error' : '' }}">
-                                        {{Form::label('details_en', 'Description EN',['class'=>'col-sm-3 control-label'])}}
-                                        <div class="col-sm-9">
-                                            {{Form::textarea('details_en', null,['class'=>'form-control','placeholder'=>'Enter Description'])}}
-                                            @if ($errors->has('details_en'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('details_en') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group{{ $errors->has('link_url') ? ' has-error' : '' }}">
-                                        {{Form::label('link_url', 'Link Url',['class'=>'col-sm-3 control-label'])}}
-                                        <div class="col-sm-9">
-                                            {{Form::text('link_url', null,['class'=>'form-control','placeholder'=>'Enter Name'])}}
-                                            @if ($errors->has('link_url'))
-                                                <span class="help-block">
-                                            <strong>{{ $errors->first('link_url') }}</strong>
-                                        </span>
                                             @endif
                                         </div>
                                     </div>
 
                                     <div class="form-group{{ $errors->has('photo_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('photo_sw', 'File SW (800x800)',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('photo_sw', 'File SW (400x400)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{ Form::file('photo_sw', ['class'=>'form-control']) }}
                                             @if ($errors->has('photo_sw'))
@@ -147,7 +121,7 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('photo_en') ? ' has-error' : '' }}">
-                                        {{Form::label('photo_en', 'File EN (800x800)',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('photo_en', 'File EN (400x400)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{ Form::file('photo_en', ['class'=>'form-control']) }}
                                             @if ($errors->has('photo_en'))
@@ -164,13 +138,13 @@
                         <div class="panel-footer text-right">
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-2">
-                                    <button class="btn btn-primary btn-block" type="submit">Add New Leader</button>
+                                    <button class="btn btn-primary btn-block" type="submit">Add New Section</button>
                                 </div>
                             </div>
                         </div>
                     {!! Form::close() !!}
                     <!--===================================================-->
-                    <!--End Horizontal Form-->
+                        <!--End Horizontal Form-->
                     </div>
 
                 </div>
@@ -180,3 +154,7 @@
         <!--End page content-->
     </div>
 @endsection
+
+@push('after-scripts')
+    @include('backend.layouts.editor')
+@endpush

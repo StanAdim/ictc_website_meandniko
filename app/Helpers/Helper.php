@@ -28,12 +28,13 @@ class Helper
 
     static function GeneralWebmasterSettings($var)
     {
-        $_Loader_WebmasterSettings = \Session::get('_Loader_WebmasterSettings');
-        if (empty($_Loader_WebmasterSettings)) {
-            $_Loader_WebmasterSettings = WebmasterSetting::find(1);
-            \Session()->put('_Loader_WebmasterSettings', $_Loader_WebmasterSettings);
-        }
-        return @$_Loader_WebmasterSettings->$var;
+//        $_Loader_WebmasterSettings = \Session::get('_Loader_WebmasterSettings');
+//        if (empty($_Loader_WebmasterSettings)) {
+//            $_Loader_WebmasterSettings = WebmasterSetting::find(1);
+//            \Session()->put('_Loader_WebmasterSettings', $_Loader_WebmasterSettings);
+//        }
+//        return @$_Loader_WebmasterSettings->$var;
+        return '';
     }
 
     static function GeneralSiteSettings($var)

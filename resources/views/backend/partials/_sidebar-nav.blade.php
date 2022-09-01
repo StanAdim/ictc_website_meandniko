@@ -38,15 +38,15 @@
                                 </a>
                             </li>
 
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['equipments.index','equipments.show','equipments.create','equipments.edit'])}}">--}}
-                                {{--<a href="{{ route('equipments.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-tasks"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Equipments</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.sections.index','backend.sections.show','backend.sections.create','backend.sections.edit'])}}">
+                                <a href="{{ route('backend.sections.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Sections</strong>
+                                    </span>
+                                </a>
+                            </li>
 
 
                             {{--<!--Menu list item-->--}}

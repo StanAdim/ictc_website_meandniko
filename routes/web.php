@@ -31,8 +31,11 @@ Route::get('logout', function () {
 Auth::routes();
 
 Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth']], function () {
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('file-manager/tinymce5', function () {
+       return view('vendor.file-manager.tinymce5');
+    });
+    Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('banners','BannerController');
     Route::resource('leaders','LeaderController');
-
+    Route::resource('sections','SectionController');
 });

@@ -29,3 +29,4 @@
 </script>
 
 @yield('scripts')
+@stack('after-scripts')
