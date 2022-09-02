@@ -41,4 +41,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::resource('leaders','LeaderController');
     Route::resource('sections','SectionController');
     Route::resource('posts','PostController');
+    Route::resource('events','EventController');
 });

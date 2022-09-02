@@ -59,16 +59,17 @@
                                 </a>
                             </li>
 
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.events.index','backend.events.show','backend.events.create','backend.events.edit'])}}">
+                                <a href="{{ route('backend.events.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Events</strong>
+                                    </span>
+                                </a>
+                            </li>
 
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.banners.index'])}}">--}}
-                                {{--<a href="{{ route('backend.banners.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-user"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Spares</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
+
 
                             {{--<!--Menu list item-->--}}
                             {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['breakdowns.index','breakdowns.show','breakdowns.create','breakdowns.edit'])}}">--}}

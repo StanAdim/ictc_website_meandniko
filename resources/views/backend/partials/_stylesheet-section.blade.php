@@ -20,7 +20,7 @@
 <link href="{{asset('assets/css/demo/nifty-demo.min.css')}}" rel="stylesheet">
 
 <!--Bootstrap Datepicker [ Required ]-->
-<link href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+{{--<link href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet">--}}
 
 <style>
 
@@ -118,6 +118,5 @@
         color: #fff;
     }
 </style>
-
-
 @yield('stylesheets')
+@stack('after-styles')

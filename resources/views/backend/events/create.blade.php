@@ -1,6 +1,6 @@
 @extends('backend.main')
 
-@section('title', 'New Posts')
+@section('title', 'New Events')
 
 @section('stylesheets')
     <!--Bootstrap Datepicker [ Required ]-->
@@ -17,7 +17,7 @@
     <!--Form Component [ SAMPLE ]-->
     <script src="{{asset('assets/js/demo/form-component.js')}}"></script>
 @endsection
-
+@include('backend.partials._datetimepicker')
 @section('content')
     <div id="content-container">
 
@@ -44,7 +44,7 @@
                         </div>
                         <!--Horizontal Form-->
                         <!--===================================================-->
-                        {!! Form::open(['route' => 'backend.posts.store', 'class'=>'form-horizontal','autocomplete'=>'off', 'files' => true]) !!}
+                        {!! Form::open(['route' => 'backend.events.store', 'class'=>'form-horizontal','autocomplete'=>'off', 'files' => true]) !!}
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -67,6 +67,30 @@
                                             @if ($errors->has('title_en'))
                                                 <span class="help-block">
                                             <strong>{{ $errors->first('title_en') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                                        {{Form::label('start_date', 'Start Date (*)',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('start_date', null,['class'=>'form-control datetimepicker','placeholder'=>'Enter Start Date'])}}
+                                            @if ($errors->has('start_date'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('start_date') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
+                                        {{Form::label('end_date', 'End Date (*)',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('end_date', null,['class'=>'form-control datetimepicker2','placeholder'=>'Enter End Date'])}}
+                                            @if ($errors->has('end_date'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('end_date') }}</strong>
                                         </span>
                                             @endif
                                         </div>
@@ -127,7 +151,7 @@
                         <div class="panel-footer text-right">
                             <div class="row">
                                 <div class="col-md-6 col-md-offset-2">
-                                    <button class="btn btn-primary btn-block" type="submit">Add New Post</button>
+                                    <button class="btn btn-primary btn-block" type="submit">Add New Event</button>
                                 </div>
                             </div>
                         </div>
