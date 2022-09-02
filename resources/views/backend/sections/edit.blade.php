@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
-                                        {{Form::label('slug', 'Slug',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('slug', 'Slug (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{ Form::text('slug', $section->slug,['class'=>'form-control','placeholder'=>'Enter Slug'])}}
                                             @if ($errors->has('slug'))
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group{{ $errors->has('title_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('title_sw', 'Title SW',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('title_sw', 'Title SW (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{ Form::text('title_sw', $section->title_sw,['class'=>'form-control','placeholder'=>'Enter Name'])}}
                                             @if ($errors->has('title_sw'))
@@ -70,9 +70,9 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('title_en') ? ' has-error' : '' }}">
-                                        {{Form::label('title_en', 'Title EN',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('title_en', 'Title EN (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
-                                            {{Form::text('title_en', $section->title_sw,['class'=>'form-control','placeholder'=>'Enter Name'])}}
+                                            {{Form::text('title_en', $section->title_en,['class'=>'form-control','placeholder'=>'Enter Name'])}}
                                             @if ($errors->has('title_en'))
                                                 <span class="help-block">
                                             <strong>{{ $errors->first('title_en') }}</strong>
@@ -82,7 +82,7 @@
                                     </div>
 
                                     <div class="form-group {{ $errors->has('details_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('description_sw', 'Description SW',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('description_sw', 'Description SW (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::textarea('description_sw', $section->details_sw,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
                                             @if ($errors->has('description_sw'))
@@ -94,7 +94,7 @@
                                     </div>
 
                                     <div class="form-group {{ $errors->has('description_en') ? ' has-error' : '' }}">
-                                        {{Form::label('description_en', 'Description EN',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('description_en', 'Description EN (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::textarea('description_en', $section->details_sw,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
                                             @if ($errors->has('description_en'))
@@ -106,7 +106,32 @@
                                     </div>
 
 
-                                    @if($section->file_sw)
+                                    <div class="form-group {{ $errors->has('link_url') ? ' has-error' : '' }}">
+                                        {{Form::label('link_url', 'Link URL',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('link_url', $section->link_url,['class'=>'form-control','placeholder'=>'Enter Link URL'])}}
+                                            @if ($errors->has('link_url '))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('link_url') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group {{ $errors->has('link_title ') ? ' has-error' : '' }}">
+                                        {{Form::label('link_title ', 'Link Title',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('link_title', $section->link_title,['class'=>'form-control','placeholder'=>'Enter Link Title'])}}
+                                            @if ($errors->has('link_title'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('link_title') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+
+                                @if($section->file_sw)
                                         <div class="form-group">
                                             <div class="col-sm-9 col-sm-offset-3">
                                                 <img src="{{url('uploads/sections/'.$section->file_sw)}}" class="img-fluid img-thumbnail" alt="Responsive image">

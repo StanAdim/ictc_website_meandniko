@@ -15,7 +15,7 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->index();
+            $table->string('slug')->unique()->index();
 
             $table->string('title_sw');
             $table->string('title_en');
@@ -26,7 +26,11 @@ class CreateSectionsTable extends Migration
             $table->string('file_sw')->nullable();
             $table->string('file_en')->nullable();
 
+            $table->string('link_url')->nullable();
+            $table->string('link_title')->nullable();
+
             $table->string('icon')->nullable();
+
             $table->tinyInteger('status');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

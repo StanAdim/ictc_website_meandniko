@@ -1,58 +1,80 @@
 @extends('frontend.layout.main', ['title' => 'Home', 'header' => 'Home'])
 @section('content')
     @include('frontend.includes.slider')
-
-    <section class="content-row-no-bg home-welcome">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-10 col-lg-8 col-xl-8">
-                <h3 class="wow-outer">
+    @php
+        $lang = App\Helpers\Helper::currentLanguage();
+        $home_section = \App\Models\Section::where('slug', 'home-section')->first();
+    @endphp
+    @if($home_section)
+        @php
+            $title = 'title_'.$lang->code;
+            $description = 'description_'.$lang->code;
+        @endphp
+        <section class="content-row-no-bg home-welcome">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-8 col-xl-8">
+                        <h3 class="wow-outer">
                     <span class="wow slideInDown" style="visibility: visible; animation-name: slideInDown; text-align: center">
-                        Welcome to ICT Commission
+                        {{$home_section->$title}}
                     </span>
-                </h3>
+                        </h3>
 
-                <p class="wow-outer offset-top-3">
+                        <p class="wow-outer offset-top-3">
                     <span class="wow slideInDown" data-wow-delay=".05s" style="visibility: visible; animation-delay: 0.05s; animation-name: slideInDown;">
-                        It is a long established fact that a reader will be distracted by the readable content of a page.It is a long established fact that a reader will be distracted by the readable content of a page.It is a long established fact that a reader will be distracted by the readable content of a page.It is a long established fact that a reader will be distracted by the readable content of a page.It is a long established fact that a reader will be distracted by the readable content of a page.
+                        {!! $home_section->$description !!}
                     </span>
-                </p>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    @if (count($leaders))
-    <section class="section section-lg py-4">
-        <div class="container">
-            <h3 class="text-center">Our Leaders</h3>
-
-            <div class="row mt-2">
-                @php
-                    $title = 'title_'.App\Helpers\Helper::currentLanguage()->code;
-                    $position = 'position_'.App\Helpers\Helper::currentLanguage()->code;
-                    $file = 'file_'.App\Helpers\Helper::currentLanguage()->code;
-                @endphp
-                @foreach($leaders as $leader)
-                <div class="col-md-4">
-                    <div class="row m-1">
-                        <a href="">
-                            <div class="col-md-12 p-0">
-                                <img src="{{url('uploads/leaders/'.$leader->$file)}}"
-                                     alt="{{$leader->$title}}" class="w-100 w-xs-75 img img-thumbnail img-responsive b-5">
-                            </div>
-                            <div class="col-md-12 text-center my-2">
-                                <h6 class="text-bold font-15">{{$leader->$title}}</h6>
-                                <span class="font-14">{{$leader->$position}}</span> <br>
-                                <button class="button button-sm button-primary mt-0">Tazama Wasifu</button>
-                            </div>
-                        </a>
+                        </p>
                     </div>
                 </div>
-                    @endforeach
             </div>
-        </div>
-    </section>
+        </section>
+    @else
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center mt-3">Add Section with <strong><i>home-section</i></strong> slug here with title and description only</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
+
+    @if (count($leaders))
+        <section class="section section-lg py-4">
+            <div class="container">
+                <h3 class="text-center">Our Leaders</h3>
+                <div class="row mt-2">
+                    @php
+                        $title = 'title_'.$lang->code;
+                        $position = 'position_'.$lang->code;
+                        $file = 'file_'.$lang->code;
+                    @endphp
+                    @foreach($leaders as $leader)
+                        <div class="col-md-4">
+                            <div class="row m-1">
+                                <a href="">
+                                    <div class="col-md-12 p-0">
+                                        <img src="{{url('uploads/leaders/'.$leader->$file)}}"
+                                             alt="{{$leader->$title}}" class="w-100 w-xs-75 img img-thumbnail img-responsive b-5">
+                                    </div>
+                                    <div class="col-md-12 text-center my-2">
+                                        <h6 class="text-bold font-15">{{$leader->$title}}</h6>
+                                        <span class="font-14">{{$leader->$position}}</span> <br>
+                                        <a class="button button-primary-outline button-winona wow slideInUp" href="services.html" style="visibility: visible; animation-name: slideInUp;">
+                                            <div class="content-original">View Profile</div>
+                                            <div class="content-dubbed">View Profile</div>
+                                        </a>
+                                        {{--<button class="button button-sm button-primary mt-0">Tazama Wasifu</button>--}}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
     @endif
     <!-- Event section-->
     <section class="section-lg text-center">
@@ -73,9 +95,10 @@
 
                 <div class="col-sm-6 col-lg-3">
                     <!-- Thumbnail Light-->
-                    <article class="thumbnail-light"><a class="thumbnail-light-media" href="single-service.html"><img
-                                    class="thumbnail-light-image" src="images/government-1-270x300.jpg" alt="" width="270"
-                                    height="300"/></a>
+                    <article class="thumbnail-light">
+                        <a class="thumbnail-light-media" href="single-service.html">
+                            <img class="thumbnail-light-image" src="images/government-1-270x300.jpg" alt="" width="270" height="300"/>
+                        </a>
                         <h5 class="thumbnail-light-title"><a href="single-service.html">Agendas & Minutes</a></h5>
                     </article>
                 </div>
@@ -103,29 +126,48 @@
                 All Events</a></div>
     </section>
 
-    <!-- Centered CTA-->
-    <section class="section section-1 bg-primary text-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-10 col-lg-7 col-xl-6">
-                    <h3 class="wow-outer">
+    @php
+        $home_section_2 = \App\Models\Section::where('slug', 'home-section-2')->first();
+    @endphp
+    @if($home_section_2)
+        @php
+            $title = 'title_'.$lang->code;
+            $description = 'description_'.$lang->code;
+        @endphp
+        <section class="section section-1 bg-primary text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-7 col-xl-6">
+                        <h3 class="wow-outer">
                         <span class="wow slideInDown">
-                            Support Our Government <br>
-                            <span class="font-weight-bold">to Transform ICT Industry</span>
+                            {{$home_section_2->$title}}
                         </span>
-                    </h3>
-                    <p class="wow-outer offset-top-3">
-                        <span class="wow slideInDown" data-wow-delay=".05s">
-                            You can make your own contribution to the development of our county ICT infrastructure and write its history with us.
-                        </span>
-                    </p>
-                    <div class="wow-outer button-outer">
-                        <a class="button button-white button-winona wow slideInDown" href="#" data-wow-delay=".1s">Learn More</a>
+                        </h3>
+                        <p class="wow-outer offset-top-3">
+                            <span class="wow slideInDown" data-wow-delay=".05s">
+                                {!! $home_section_2->$description !!}
+                            </span>
+                        </p>
+                        @if ($home_section_2->link_url)
+                            <div class="wow-outer button-outer">
+                                <a class="button button-white button-winona wow slideInDown" href="{{$home_section_2->link_url}}" data-wow-delay=".1s">{{$home_section_2->link_title}}</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @else
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center">Add Section with <strong><i>home-section-2</i></strong> slug here with title, description, link url and link title only</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
     <!-- Latest Blog Posts-->
     <section class="section section-lg text-center">
         <div class="container">

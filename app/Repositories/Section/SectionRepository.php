@@ -40,6 +40,8 @@ class SectionRepository extends BaseRepository
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
                 'slug' => $request->slug,
+                'link_url' => $request->link_url ?? null,
+                'link_title' => $request->link_title ?? null,
                 'status' => 1,
                 'file_sw' => $filename_sw ?? null,
                 'file_en' => $filename_en ?? null
@@ -81,6 +83,8 @@ class SectionRepository extends BaseRepository
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
                 'slug' => $request->slug,
+                'link_url' => $request->link_url ?? null,
+                'link_title' => $request->link_title ?? null,
                 'file_sw' => $filename_sw,
                 'file_en' => $filename_en
             ]);

@@ -48,8 +48,9 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
+
                                     <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('slug', 'Slug',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('slug', 'Slug (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::text('slug', null,['class'=>'form-control','placeholder'=>'Enter Slug'])}}
                                             @if ($errors->has('slug'))
@@ -61,7 +62,7 @@
                                     </div>
 
                                     <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('title_sw', 'Title SW',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('title_sw', 'Title SW (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::text('title_sw', null,['class'=>'form-control','placeholder'=>'Enter Swahili Title'])}}
                                             @if ($errors->has('title_sw'))
@@ -73,7 +74,7 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('title_en') ? ' has-error' : '' }}">
-                                        {{Form::label('title_en', 'Title EN',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('title_en', 'Title EN (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::text('title_en', null,['class'=>'form-control','placeholder'=>'Enter English Title'])}}
                                             @if ($errors->has('title_en'))
@@ -85,7 +86,7 @@
                                     </div>
 
                                     <div class="form-group {{ $errors->has('description_sw') ? ' has-error' : '' }}">
-                                        {{Form::label('description_sw', 'Description SW',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('description_sw', 'Description SW (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::textarea('description_sw', null,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
                                             @if ($errors->has('description_sw'))
@@ -97,12 +98,36 @@
                                     </div>
 
                                     <div class="form-group {{ $errors->has('description_en') ? ' has-error' : '' }}">
-                                        {{Form::label('description_en', 'Description EN',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('description_en', 'Description EN (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::textarea('description_en', null,['class'=>'form-control tinymce','placeholder'=>'Enter Description'])}}
                                             @if ($errors->has('description_en'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('description_en') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group {{ $errors->has('link_url') ? ' has-error' : '' }}">
+                                        {{Form::label('link_url', 'Link URL',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('link_url', null,['class'=>'form-control','placeholder'=>'Enter Link URL'])}}
+                                            @if ($errors->has('link url '))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('link_url') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group {{ $errors->has('link_title ') ? ' has-error' : '' }}">
+                                        {{Form::label('link_title ', 'Link Title',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('link_title', null,['class'=>'form-control','placeholder'=>'Enter Link Title'])}}
+                                            @if ($errors->has('link_title'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('link_title') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
