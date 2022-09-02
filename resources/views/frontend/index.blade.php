@@ -168,6 +168,8 @@
             </div>
         @endif
     @endif
+
+    @if(count($latest_news) > 0)
     <!-- Latest Blog Posts-->
     <section class="section section-lg text-center">
         <div class="container">
@@ -175,61 +177,48 @@
                 <span class="wow slideInDown">Latest News</span>
             </h3>
             <div class="row row-50">
+                @php
+                $title_var = "title_" . App\Helpers\Helper::currentLanguage()->code;
+                $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
+
+                $description_var = "description_" . App\Helpers\Helper::currentLanguage()->code;
+                $description_var2 = "description_" . env('DEFAULT_LANGUAGE');
+                @endphp
+                @foreach($latest_news as $post)
                 <div class="col-md-6 wow-outer">
                     <!-- Post Modern-->
                     <article class="post-modern wow fadeIn">
-                        <a class="post-modern-media" href="single-blog-post.html">
-                            <img src="images/grid-blog-5-570x352.jpg" alt="" width="570" height="352"/>
+                        <a class="post-modern-media" href="{{route('frontend.news.single', $post->slug)}}">
+                            <img src="{{url('uploads/posts/'.$post->file_sw)}}" alt="" width="570" height="352"/>
                         </a>
                         <h4 class="post-modern-title">
-                            <a href="single-blog-post.html">Interview With the Governor</a>
+                            <a href="{{route('frontend.news.single', $post->slug)}}">{{$post->$title_var ?? $title_var2}}</a>
                         </h4>
                         <ul class="post-modern-meta">
-                            <li>by Theresa Barnes</li>
+                            <li>by ICTC Administrator</li>
                             <li>
-                                <time datetime="2018">Apr 21, 2018 at 12:05 pm</time>
+                                <time datetime="{{\Carbon\Carbon::parse($post->created_at)->year}}">
+                                    {{\Carbon\Carbon::parse($post->created_at)->format('M m, Y \a\t h:i A')}}
+                                </time>
                             </li>
                             <li>
                                 <a class="button-winona" href="#">News</a>
                             </li>
                         </ul>
-                        <p class="wow-outer-dark">Ann Smith, one of the most prominent journalists of our city, has
-                            recently spoken to our governor, John Porter. In this article, we publish the text version
-                            of the interview. To watch the video....</p>
+                        <p class="wow-outer-dark">{{ substr(strip_tags($post->$description_var ?? $description_var2),0,150) }}....</p>
                     </article>
                 </div>
-                <div class="col-md-6 wow-outer">
-                    <!-- Post Modern-->
-                    <article class="post-modern wow fadeIn">
-                        <a class="post-modern-media" href="single-blog-post.html">
-                            <img src="images/grid-blog-6-570x352.jpg" alt="" width="570" height="352"/>
-                        </a>
-                        <h4 class="post-modern-title">
-                            <a href="single-blog-post.html">Freedom of Speech: Essential Principles</a>
-                        </h4>
-                        <ul class="post-modern-meta">
-                            <li>by Theresa Barnes</li>
-                            <li>
-                                <time datetime="2018">Apr 21, 2018 at 12:05 pm</time>
-                            </li>
-                            <li><a class="button-winona" href="#">News</a></li>
-                        </ul>
-                        <p class="wow-outer-dark">
-                            Freedom of expression is considered one of the most fundamental of all
-                            freedoms. While it is of dubious value to rate one freedom over another, freedom of
-                            expression is...
-                        </p>
-                    </article>
-                </div>
+                @endforeach
             </div>
 
             <div class="wow-outer button-outer">
-                <a class="button button-primary-outline button-winona wow slideInUp" href="grid-blog.html">
+                <a class="button button-primary-outline button-winona wow slideInUp" href="{{route('frontend.news')}}">
                     View All News
                 </a>
             </div>
         </div>
     </section>
+    @endif
 @endsection
 @push('after-scripts')
     <script src="{{ URL::asset(url('js/flexslider/jquery.flexslider.js'))}}"></script>

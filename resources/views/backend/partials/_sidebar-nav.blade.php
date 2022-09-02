@@ -49,6 +49,17 @@
                             </li>
 
 
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.posts.index','backend.posts.show','backend.posts.create','backend.posts.edit'])}}">
+                                <a href="{{ route('backend.posts.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Posts</strong>
+                                    </span>
+                                </a>
+                            </li>
+
+
                             {{--<!--Menu list item-->--}}
                             {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.banners.index'])}}">--}}
                                 {{--<a href="{{ route('backend.banners.index') }}">--}}
