@@ -49,9 +49,31 @@ class FrontendController extends Controller
 
     public function news()
     {
-//        $user = access()->user();
-            return view('frontend.news');
+        $posts = Post::orderBy('id', 'desc')->paginate(6);
+            return view('frontend.news',compact('posts'));
+    }
+
+    public function singleNews($slug) {
+        $post = Post::where('slug', $slug)->first();
+        if ($post) {
+            return view('frontend.news_single',compact('post'));
+        }
+        abort(404);
+    }
+
+    public function events()
+    {
+        $events = Event::orderBy('id', 'desc')->paginate(6);
+            return view('frontend.events',compact('events'));
 //                ->with('user', $user);
+    }
+
+    public function singleEvent($slug) {
+        $event = Event::where('slug', $slug)->first();
+        if ($event) {
+            return view('frontend.event_single',compact('event'));
+        }
+        abort(404);
     }
     public function contact()
     {
@@ -59,13 +81,19 @@ class FrontendController extends Controller
 //                ->with('user', $user);
     }
 
+
     public function investments(Request $request)
     {
-        $investments = Investment::paginate(6);
-        if ($request->ajax()) {
-            return view('frontend.investment_paginated_data',compact('investments'));
-        }
+        $investments = Investment::orderBy('id', 'desc')->paginate(6);
         return view('frontend.investments', compact('investments'));
+    }
+
+    public function singleInvestment($slug) {
+        $investment = Investment::where('slug', $slug)->first();
+        if ($investment) {
+            return view('frontend.investment_single',compact('investment'));
+        }
+        abort(404);
     }
 
 

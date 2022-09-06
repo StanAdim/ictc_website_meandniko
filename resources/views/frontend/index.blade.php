@@ -107,9 +107,9 @@
                                     <li>by ICTC</li>
                                     <li>
                                         <time datetime="{{\Carbon\Carbon::parse($event->created_at)->year}}">
-                                           From : {{\Carbon\Carbon::parse($event->start_date)->format('M m, Y \a\t h:i A')}}<br/>
+                                           From : {{\Carbon\Carbon::parse($event->start_date)->format('M d, Y \a\t h:i A')}}<br/>
                                            To &nbsp;&nbsp;&nbsp;&nbsp;:
-                                            {{\Carbon\Carbon::parse($event->end_date)->format('M m, Y \a\t h:i A')}}<br/>
+                                            {{\Carbon\Carbon::parse($event->end_date)->format('M d, Y \a\t h:i A')}}<br/>
                                         </time>
                                     </li>
                                     <li>

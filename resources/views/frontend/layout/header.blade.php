@@ -96,12 +96,12 @@
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.events')}}">EVENTS</a>
                                         </li>
-                                        <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>
-                                        </li>
-                                        <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="city-history.html">VIDEO GALLERY</a>
-                                        </li>
+                                        {{--<li class="rd-dropdown-item">--}}
+                                            {{--<a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li class="rd-dropdown-item">--}}
+                                            {{--<a class="rd-dropdown-link" href="city-history.html">VIDEO GALLERY</a>--}}
+                                        {{--</li>--}}
                                     </ul>
                                 </li>
 
