@@ -15,7 +15,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10 col-lg-8 col-xl-8">
                         <h3 class="wow-outer">
-                    <span class="wow slideInDown" style="visibility: visible; animation-name: slideInDown; text-align: center">
+                    <span class="wow slideInDown" style="visibility: visible; animation-name: slideInDown; text-align: center;color: black">
                         {{$home_section->$title}}
                     </span>
                         </h3>

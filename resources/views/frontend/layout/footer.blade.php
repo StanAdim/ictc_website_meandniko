@@ -1,3 +1,8 @@
+@php
+    $lang = App\Helpers\Helper::currentLanguage();
+    $title = 'title_'.$lang->code;
+    $posts = \App\Models\Post::orderBy('id', 'desc')->take(2)->get();
+@endphp
 <footer class="section footer-advanced bg-gray-800">
     <div class="footer-advanced-main">
         <div class="container">
@@ -12,24 +17,18 @@
                 </div>
                 <div class="col-sm-7 col-md-5 col-lg-4">
                     <h4>Recent News</h4>
+                    @foreach($posts as $post)
                     <!-- Post Inline-->
-                    <article class="post-inline">
-                        <p class="post-inline-title"><a href="single-blog-post.html">Dashboard Reflections:
-                                Population Size, Form of Government & Gender</a></p>
-                        <ul class="post-inline-meta">
-                            <li>by Theresa Barnes</li>
-                            <li><a href="single-blog-post.html">2 days ago</a></li>
-                        </ul>
-                    </article>
-                    <!-- Post Inline-->
-                    <article class="post-inline">
-                        <p class="post-inline-title"><a href="single-blog-post.html">Shared Active Transportation
-                                Systems: Another New Idea for Our City</a></p>
-                        <ul class="post-inline-meta">
-                            <li>by Theresa Barnes</li>
-                            <li><a href="single-blog-post.html">2 days ago</a></li>
-                        </ul>
-                    </article>
+                        <article class="post-inline">
+                            <p class="post-inline-title">
+                                <a href="{{route('frontend.news.single', $post->slug)}}">{{$post->$title}}</a>
+                            </p>
+                            <ul class="post-inline-meta">
+                                <li>by ICTC</li>
+                                <li><a href="{{route('frontend.news.single', $post->slug)}}">{{\Carbon\Carbon::parse($post->start_date)->format('M d, Y')}}</a></li>
+                            </ul>
+                        </article>
+                    @endforeach
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <h4>Useful Links</h4>
