@@ -64,7 +64,9 @@ class BannerRepository extends BaseRepository
                 $filename_sw = Str::random(30).'.'.$file_sw->getClientOriginalExtension();
                 $file_sw->move($this->destinationPath, $filename_sw);
                 if ($banner->file_sw != 'noimg.png') {
-                    File::delete($this->destinationPath.'/'.$banner->file_sw);
+                    if (File::exists($this->destinationPath.'/'.$banner->file_sw)){
+                        File::delete($this->destinationPath.'/'.$banner->file_sw);
+                    }
                 }
             } else {
                 $filename_sw = $banner->file_sw;
@@ -74,7 +76,9 @@ class BannerRepository extends BaseRepository
                 $filename_en = Str::random(30) . '.' . $file_en->getClientOriginalExtension();
                 $file_en->move($this->destinationPath, $filename_en);
                 if ($banner->file_en != 'noimg.png') {
-                    File::delete($this->destinationPath.'/'.$banner->file_en);
+                    if (File::exists($this->destinationPath.'/'.$banner->file_en)){
+                        File::delete($this->destinationPath.'/'.$banner->file_en);
+                    }
                 }
             } else {
                 $filename_en = $banner->file_en;
