@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Event;
+use App\Models\Investment;
 use App\Models\Leader;
 use App\Models\Post;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
@@ -54,9 +55,17 @@ class FrontendController extends Controller
     }
     public function contact()
     {
-//        $user = access()->user();
             return view('frontend.contact');
 //                ->with('user', $user);
+    }
+
+    public function investments(Request $request)
+    {
+        $investments = Investment::paginate(6);
+        if ($request->ajax()) {
+            return view('frontend.investment_paginated_data',compact('investments'));
+        }
+        return view('frontend.investments', compact('investments'));
     }
 
 

@@ -130,6 +130,7 @@
             </div>
         </section>
     @endif
+
     {{--<section class="section-lg text-center">--}}
         {{--<div class="container">--}}
             {{--<h3 class="wow-outer wow-outer-dark"><span class="wow slideInUp">Latest Event</span></h3>--}}

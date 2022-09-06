@@ -69,6 +69,25 @@
                                 </a>
                             </li>
 
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.investments.index','backend.investments.show','backend.investments.create','backend.investments.edit'])}}">
+                                <a href="{{ route('backend.investments.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Investments</strong>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.pages.index','backend.pages.show','backend.pages.create','backend.pages.edit'])}}">
+                                <a href="{{ route('backend.pages.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Page</strong>
+                                    </span>
+                                </a>
+                            </li>
 
 
                             {{--<!--Menu list item-->--}}
