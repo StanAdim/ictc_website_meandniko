@@ -16,7 +16,7 @@
                         $description_var2 = "description_" . env('DEFAULT_LANGUAGE');
                     @endphp
                     @foreach($investments as $investment)
-                        <div class="col-md-6 wow-outer">
+                        <div class="col-md-6 wow-outer mt-4">
                             <!-- Post Modern-->
                             <article class="post-modern wow fadeIn">
                                 <a class="post-modern-media" href="{{route('frontend.investments.single', $investment->slug)}}">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="wow-outer button-outer">
-                    {!! $investments->render() !!}
+                    {!! $investments->links('frontend.includes.pagination.custom') !!}
                 </div>
             </div>
         </section>

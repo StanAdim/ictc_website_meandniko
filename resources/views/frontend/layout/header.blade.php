@@ -91,10 +91,10 @@
                                     <!-- RD Navbar Dropdown-->
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="community.html">NEWS</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.news')}}">NEWS</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="events.html">EVENTS</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.events')}}">EVENTS</a>
                                         </li>
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>

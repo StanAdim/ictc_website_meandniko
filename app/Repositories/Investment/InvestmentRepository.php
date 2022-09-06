@@ -36,7 +36,7 @@ class InvestmentRepository extends BaseRepository
                 $filename_en = Str::random(30).'.'.$file_en->getClientOriginalExtension();
                 $file_en->move($this->destinationPath, $filename_en);
             } else {
-                $filename_sw = 'noimg.png';
+                $filename_en = 'noimg.png';
             }
             $this->query()->create([
                 'title_sw' => $request->title_sw,

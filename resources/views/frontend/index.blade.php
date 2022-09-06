@@ -82,7 +82,7 @@
         <!-- Latest Blog Posts-->
         <section class="section section-lg text-center">
             <div class="container">
-                <h3 class="wow-outer wow-outer-dark text-center">
+                <h3 class="wow-outer wow-outer-dark text-center mb-3">
                     <span class="wow slideInDown">Latest Events</span>
                 </h3>
                 <div class="row row-50">
@@ -227,7 +227,7 @@
     <!-- Latest Blog Posts-->
     <section class="section section-lg text-center">
         <div class="container">
-            <h3 class="wow-outer wow-outer-dark text-center">
+            <h3 class="wow-outer wow-outer-dark text-center mb-3">
                 <span class="wow slideInDown">Latest News</span>
             </h3>
             <div class="row row-50">
