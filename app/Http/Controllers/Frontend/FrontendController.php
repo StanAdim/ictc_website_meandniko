@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Event;
 use App\Models\Leader;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -31,10 +32,12 @@ class FrontendController extends Controller
         $SliderBanners = Banner::all();
         $leaders = Leader::all();
         $latest_news = Post::latest()->limit(2)->get();
+        $latest_events = Event::orderBy('start_date', 'desc')->limit(2)->get();
             return view('frontend.index')
                 ->with('SliderBanners', $SliderBanners)
                 ->with('leaders', $leaders)
-                ->with('latest_news', $latest_news);
+                ->with('latest_news', $latest_news)
+                ->with('latest_events', $latest_events);
     }
 
     public function about()

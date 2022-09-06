@@ -20,6 +20,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('news', 'FrontendController@news')->name('news');
     Route::get('news/{slug}', 'FrontendController@singleNews')->name('news.single');
     Route::get('events', 'FrontendController@events')->name('events');
+    Route::get('events/{slug}', 'FrontendController@singleEvent')->name('events.single');
+
     Route::get('contact', 'FrontendController@contact')->name('contact');
 });
 

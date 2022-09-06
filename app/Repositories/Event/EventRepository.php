@@ -2,6 +2,7 @@
 namespace App\Repositories\Event;
 use App\Models\Event;
 use App\Repositories\BaseRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -43,8 +44,8 @@ class EventRepository extends BaseRepository
                 'title_en' => $request->title_en,
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
+                'start_date' => Carbon::parse($request->start_date),
+                'end_date' => Carbon::parse($request->end_date),
                 'slug' => Str::slug($request->title_en),
                 'status' => 1,
                 'file_sw' => $filename_sw,
@@ -87,8 +88,8 @@ class EventRepository extends BaseRepository
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
 
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
+                'start_date' => Carbon::parse($request->start_date),
+                'end_date' => Carbon::parse($request->end_date),
 
                 'slug' => Str::slug($request->title_en),
                 'file_sw' => $filename_sw,
