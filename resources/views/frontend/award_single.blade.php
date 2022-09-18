@@ -100,7 +100,7 @@
                             </span>
                         </h4>
                         <div class="wow-outer button-outer">
-                            <a class="button button-white button-winona wow slideInLeft" href="#" style="visibility: visible; animation-name: slideInLeft;">
+                            <a class="button button-white button-winona wow slideInLeft" href="{{route('frontend.award.apply', $award->slug)}}" style="visibility: visible; animation-name: slideInLeft;">
                                 <div class="content-original">Apply Now</div>
                                 <div class="content-dubbed">Apply Now</div>
                             </a>

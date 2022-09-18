@@ -92,6 +92,24 @@ class FrontendController extends Controller
         abort(404);
     }
 
+    public function applyAward($slug) {
+        $award = Award::where('slug', $slug)->first();
+        if ($award) {
+            return view('frontend.apply_award',compact('award'));
+        }
+        abort(404);
+    }
+
+    public function awardStore(Request $request) {
+//        $this->validate(
+//            $request,
+//            [
+//                'startup_name'=>'required'
+//            ]
+//        );
+        dd($request->all());
+    }
+
     public function contact()
     {
         return view('frontend.contact');

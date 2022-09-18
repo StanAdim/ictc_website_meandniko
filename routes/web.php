@@ -23,6 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('events/{slug}', 'FrontendController@singleEvent')->name('events.single');
     Route::get('awards', 'FrontendController@awards')->name('awards');
     Route::get('awards/{slug}', 'FrontendController@singleAward')->name('awards.single');
+    Route::get('awards/{slug}/apply', 'FrontendController@applyAward')->name('award.apply');
+    Route::post('awards/application/store', 'FrontendController@awardStore')->name('application.store');
     Route::get('investments', 'FrontendController@investments')->name('investments');
     Route::get('investments/{slug}', 'FrontendController@singleInvestment')->name('investments.single');
 
