@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Award;
 use App\Repositories\Award\AwardRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -18,7 +19,7 @@ class AwardController extends Controller
      */
     public function index()
     {
-        $awards = Award::all();
+        $awards = Award::where('award_date','>', Carbon::now())->get();
         $currentLanguage = Helper::currentLanguage();
         return view('backend.awards.index')
             ->withAwards($awards)

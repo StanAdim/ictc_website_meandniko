@@ -5,7 +5,7 @@
             <div class="row px-xs-2">
                 <div class="col-md-2 col-sm-2 col-xs-2 col-2 float-left text-left pt-1 my-auto">
                     <a href="#">
-                        <img src="https://www.ega.go.tz/site/images/emblem.png" alt="emblem" class="mx-auto img-fluid emblem">
+                        <img src="{{ URL::asset(url('images/tanzania-logo.png'))}}" alt="emblem" class="mx-auto img-fluid emblem">
                     </a>
                 </div>
 
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-md-2 col-sm-2 col-xs-2 col-2 text-right client-logo pt-1 pr-1 my-auto">
-                    <img src="https://www.ictc.go.tz/siteimg/LOGO-02.png" alt="eGA Logo" class="img-fluid"></div>
+                    <img src="{{ URL::asset(url('images/ictc-logo.png'))}}" alt="ICTC Logo" class="img-fluid"></div>
             </div>
         </div>
     </div>
@@ -95,6 +95,9 @@
                                         </li>
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.events')}}">EVENTS</a>
+                                        </li>
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('frontend.awards')}}">STARTUP AWARDS</a>
                                         </li>
                                         {{--<li class="rd-dropdown-item">--}}
                                             {{--<a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>--}}
