@@ -22,6 +22,7 @@
 {{--<link href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet">--}}
 
 <style>
+
     @media (min-width:768px) {
         .show-xs {
             display:block !important;
@@ -56,7 +57,7 @@
     }
     .mt-3 {
         margin-top: 24px;
-    }injection cleaner
+    }
     .cls-content {
         padding-top: 20vh;
     }

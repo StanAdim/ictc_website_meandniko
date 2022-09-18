@@ -70,6 +70,16 @@
                             </li>
 
                             <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.awards.index','backend.awards.show','backend.awards.create','backend.awards.edit'])}}">
+                                <a href="{{ route('backend.awards.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Awards</strong>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <!--Menu list item-->
                             <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.investments.index','backend.investments.show','backend.investments.create','backend.investments.edit'])}}">
                                 <a href="{{ route('backend.investments.index') }}">
                                     <i class="glyphicon glyphicon-tasks"></i>

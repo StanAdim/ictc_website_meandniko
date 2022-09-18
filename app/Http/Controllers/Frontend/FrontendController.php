@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Award;
 use App\Models\Banner;
 use App\Models\Event;
 use App\Models\Investment;
@@ -34,23 +35,23 @@ class FrontendController extends Controller
         $leaders = Leader::all();
         $latest_news = Post::latest()->limit(2)->get();
         $latest_events = Event::orderBy('start_date', 'desc')->limit(2)->get();
-            return view('frontend.index')
-                ->with('SliderBanners', $SliderBanners)
-                ->with('leaders', $leaders)
-                ->with('latest_news', $latest_news)
-                ->with('latest_events', $latest_events);
+        return view('frontend.index')
+            ->with('SliderBanners', $SliderBanners)
+            ->with('leaders', $leaders)
+            ->with('latest_news', $latest_news)
+            ->with('latest_events', $latest_events);
     }
 
     public function about()
     {
-            return view('frontend.about');
+        return view('frontend.about');
 //                ->with('user', $user);
     }
 
     public function news()
     {
         $posts = Post::orderBy('id', 'desc')->paginate(6);
-            return view('frontend.news',compact('posts'));
+        return view('frontend.news',compact('posts'));
     }
 
     public function singleNews($slug) {
@@ -64,7 +65,7 @@ class FrontendController extends Controller
     public function events()
     {
         $events = Event::orderBy('id', 'desc')->paginate(6);
-            return view('frontend.events',compact('events'));
+        return view('frontend.events',compact('events'));
 //                ->with('user', $user);
     }
 
@@ -75,9 +76,25 @@ class FrontendController extends Controller
         }
         abort(404);
     }
+
+    public function awards()
+    {
+        $awards = Award::orderBy('id', 'desc')->paginate(6);
+        return view('frontend.awards',compact('awards'));
+//                ->with('user', $user);
+    }
+
+    public function singleAward($slug) {
+        $award = Award::where('slug', $slug)->first();
+        if ($award) {
+            return view('frontend.award_single',compact('award'));
+        }
+        abort(404);
+    }
+
     public function contact()
     {
-            return view('frontend.contact');
+        return view('frontend.contact');
 //                ->with('user', $user);
     }
 

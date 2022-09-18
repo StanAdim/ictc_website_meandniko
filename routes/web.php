@@ -21,6 +21,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('news/{slug}', 'FrontendController@singleNews')->name('news.single');
     Route::get('events', 'FrontendController@events')->name('events');
     Route::get('events/{slug}', 'FrontendController@singleEvent')->name('events.single');
+    Route::get('awards', 'FrontendController@awards')->name('events');
+    Route::get('awards/{slug}', 'FrontendController@singleAward')->name('events.single');
     Route::get('investments', 'FrontendController@investments')->name('investments');
     Route::get('investments/{slug}', 'FrontendController@singleInvestment')->name('investments.single');
 
@@ -46,6 +48,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::resource('sections','SectionController');
     Route::resource('posts','PostController');
     Route::resource('events','EventController');
+    Route::resource('awards','AwardController');
     Route::resource('investments','InvestmentController');
     Route::resource('pages','PageController');
 });
