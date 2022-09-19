@@ -77,11 +77,11 @@
                 </a>
                 <!-- Rights-->
                 <p class="rights">
-                    <span>&copy;&nbsp;2016 - </span>
+                    <span>&copy;</span>
                     <span class="copyright-year"></span>
                     <span>&nbsp;</span>
-                    <span>All Rights Reserved. Powered by
-                        <a target="_blank" href="https://www.wavesleek.co.tz">Wavesleek LTD</a>
+                    <span>ICTC, All Rights Reserved. Powered by
+                        <a target="_blank" href="https://www.wavesleek.co.tz">Wavesleek</a>
                     </span>
                     <!--<span>&nbsp;</span><br class="d-sm-none"/>-->
                     <!--<a href="terms-of-use.html">Terms of Use</a>-->

@@ -2048,12 +2048,5 @@
 		if (plugins.hoverdir.length) {
 			initHoverDir(plugins.hoverdir);
 		}
-
-		// Custom Scroll
-		SmoothScroll({
-			frameRate        : 150, // [Hz]
-			animationTime    : 200, // [ms]
-			stepSize         : 95, // [px]
-		});
 	});
 }());

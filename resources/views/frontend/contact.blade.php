@@ -12,7 +12,6 @@
                                     +255 7368 48444
                                 </a>
                             </li>
-                            {{--<li><a class="link-default" href="tel:#">1-800-9876-098</a></li>--}}
                         </ul>
                     </div>
                 </div>
@@ -41,7 +40,6 @@
                     <div class="col-lg-9 cell-inner">
                         <div class="section-lg">
                             <h3 class="wow-outer"><span class="wow slideInDown" style="color: #74757f">Contact Us</span></h3>
-                            <!-- CUSTOM Mailform-->
                             <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
                                 <div class="row row-10">
                                     <div class="col-md-6 wow-outer">
