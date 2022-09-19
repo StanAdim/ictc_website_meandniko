@@ -52,6 +52,7 @@
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.home') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.home')}}">Home</a></li>
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.about') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.about')}}">About</a></li>
+                                <li class="rd-nav-item {{ request()->routeIs('frontend.investments') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.investments')}}">ICT PROMOTION</a></li>
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.investments') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.investments')}}">ICT INVESTMENT</a></li>
                                 {{--<li class="rd-nav-item"><a class="rd-nav-link" href="#"</a>--}}
                                     {{--<!-- RD Navbar Dropdown-->--}}

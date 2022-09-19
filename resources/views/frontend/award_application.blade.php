@@ -17,35 +17,35 @@
                 <div class="offset-2 col-lg-8">
                     <article class="post-creative">
                         <h3 class="post-creative-title">
-                            Application for {{$award->$title_var ?? $title_var2}}
+                            Application for {{$application->award->$title_var ?? $title_var2}}
                         </h3>
                         <ul class="post-creative-meta">
                             <li>
                                 <span class="icon mdi mdi-calendar-clock"></span>
-                                <time datetime="{{\Carbon\Carbon::parse($award->created_at)->year}}">
-                                    Deadline: {{\Carbon\Carbon::parse($award->application_deadline)->format('M d, Y \a\t h:i A')}}
+                                <time datetime="{{\Carbon\Carbon::parse($application->award->created_at)->year}}">
+                                    Deadline&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{\Carbon\Carbon::parse($application->award->application_deadline)->format('M d, Y \a\t h:i A')}} <br/>
+                                    Award Date: {{\Carbon\Carbon::parse($application->award->award_date)->format('M d, Y \a\t h:i A')}}
                                 </time>
                             </li>
                             <li>
                                 <span class="icon mdi mdi-tag-multiple"></span>
-                                <a href="#">Awards</a>
+                                <a href="#">Award Application</a>
                             </li>
                         </ul>
                     </article>
                 </div>
             </div>
 
-            <div class="row">
+            @include('backend.partials._alert');
+
+            <div class="row mt-2">
                 <div class="offset-md-2 col-md-8">
-                    {!! Form::open(['route' => 'frontend.application.store', 'class'=>'form-horizontal','autocomplete'=>'off', 'files' => true]) !!}
-
+                    {!! Form::model($application, ['route' => ['frontend.application.update', $application->uid], 'class'=>'form-horizontal', 'method'=>'PUT', 'autocomplete'=>'off', 'files' => true]) !!}
                     <h5 class="text-capitalize">PRIMARY CONTACT INFORMATION</h5>
-                    <input type="hidden" name="award_uid" value="{{$award->uid}}" />
-
                     <div class="form-group py-2 {{ $errors->has('startup_name') ? ' has-error' : '' }}">
                         {{Form::label('startup_name', 'Startup Name (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('startup_name', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Startup Name'])}}
+                            {{Form::text('startup_name', $application->startup_name,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Startup Name'])}}
                             @if ($errors->has('startup_name'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('startup_name') }}</b>
@@ -57,7 +57,7 @@
                     <div class="form-group py-2 {{ $errors->has('founder_names') ? ' has-error' : '' }}">
                         {{Form::label('founder_names', 'Founder / Co-founders (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('founder_names', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Name of founder / Co-founders'])}}
+                            {{Form::text('founder_names', $application->founder_names,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Name of founder / Co-founders'])}}
                             @if ($errors->has('founder_names'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('founder_names') }}</b>
@@ -69,7 +69,7 @@
                     <div class="form-group py-2 {{ $errors->has('phone') ? ' has-error' : '' }}">
                         {{Form::label('phone', 'Phone Number (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('phone', null,['class'=>'form-control','placeholder'=>'Enter Phone Number','required'=>'required'])}}
+                            {{Form::text('phone', $application->phone,['class'=>'form-control','placeholder'=>'Enter Phone Number','required'=>'required'])}}
                             @if ($errors->has('phone'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('phone') }}</b>
@@ -81,7 +81,7 @@
                     <div class="form-group py-2 {{ $errors->has('email') ? ' has-error' : '' }}">
                         {{Form::label('email', 'Email (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('email', null,['class'=>'form-control','placeholder'=>'Enter Email','required'=>'required'])}}
+                            {{Form::text('email', $application->email,['class'=>'form-control','placeholder'=>'Enter Email','required'=>'required'])}}
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('email') }}</b>
@@ -93,7 +93,7 @@
                     <div class="form-group py-2 {{ $errors->has('city') ? ' has-error' : '' }}">
                         {{Form::label('city', 'City (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('city', null,['class'=>'form-control','placeholder'=>'Enter City','required'=>'required'])}}
+                            {{Form::text('city', $application->city,['class'=>'form-control','placeholder'=>'Enter City','required'=>'required'])}}
                             @if ($errors->has('city'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('city') }}</b>
@@ -108,7 +108,7 @@
                     <div class="form-group py-2 {{ $errors->has('startup_description') ? ' has-error' : '' }}">
                         {{Form::label('startup_description', 'Brief About Your Startup (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('startup_description', null,['class'=>'form-control','placeholder'=>'Write some brief about your startup','required'=>'required'])}}
+                            {{Form::textarea('startup_description', $application->startup_description,['class'=>'form-control','placeholder'=>'Write some brief about your startup','required'=>'required'])}}
                             @if ($errors->has('startup_description'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('startup_description') }}</b>
@@ -120,7 +120,7 @@
                     <div class="form-group py-2 {{ $errors->has('date_of_incorporation') ? ' has-error' : '' }}">
                         {{Form::label('date_of_incorporation', 'Date of Incorporation (Date your company was registered) (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('date_of_incorporation', null,['class'=>'form-control','placeholder'=>'Write Date of Incorporation','required'=>'required'])}}
+                            {{Form::text('date_of_incorporation', $application->date_of_incorporation,['class'=>'form-control','placeholder'=>'Write Date of Incorporation','required'=>'required'])}}
                             @if ($errors->has('date_of_incorporation'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('date_of_incorporation') }}</b>
@@ -132,7 +132,7 @@
                     <div class="form-group py-2 {{ $errors->has('no_of_staff') ? ' has-error' : '' }}">
                         {{Form::label('no_of_staff', 'No. of Staff / Employee (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('no_of_staff', null,['class'=>'form-control','required'=>'required','placeholder'=>'Write Number of staff'])}}
+                            {{Form::text('no_of_staff', $application->no_of_staff,['class'=>'form-control','required'=>'required','placeholder'=>'Write Number of staff'])}}
                             @if ($errors->has('no_of_staff'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('no_of_staff') }}</b>
@@ -144,7 +144,7 @@
                     <div class="form-group py-2 {{ $errors->has('product_service') ? ' has-error' : '' }}">
                         {{Form::label('product_service', 'Key Product / Services (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('product_service', null,['class'=>'form-control','required'=>'required','placeholder'=>'Write Key Product / Services'])}}
+                            {{Form::text('product_service', $application->product_service,['class'=>'form-control','required'=>'required','placeholder'=>'Write Key Product / Services'])}}
                             @if ($errors->has('product_service'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('product_service') }}</b>
@@ -156,7 +156,7 @@
                     <div class="form-group py-2 {{ $errors->has('website') ? ' has-error' : '' }}">
                         {{Form::label('website', 'Website URL',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('website', null,['class'=>'form-control','placeholder'=>'Write Website url'])}}
+                            {{Form::text('website', $application->website,['class'=>'form-control','placeholder'=>'Write Website url'])}}
                             @if ($errors->has('website'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('website') }}</b>
@@ -168,7 +168,7 @@
                     <div class="form-group py-2 {{ $errors->has('achievements') ? ' has-error' : '' }}">
                         {{Form::label('achievements', 'Achievements/Accomplishments (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('achievements', null,['class'=>'form-control','required'=>'required','placeholder'=>'Your achievements/ accomplishments till date'])}}
+                            {{Form::textarea('achievements', $application->achievements,['class'=>'form-control','required'=>'required','placeholder'=>'Your achievements/ accomplishments till date'])}}
                             @if ($errors->has('achievements'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('achievements') }}</b>
@@ -180,7 +180,7 @@
                     <div class="form-group py-2 {{ $errors->has('major_achievements') ? ' has-error' : '' }}">
                         {{Form::label('major_achievements', 'List Major Achievement of your Startup Company (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('major_achievements', null,['class'=>'form-control','required'=>'required','placeholder'=>'List Major Achievement of your Startup Company'])}}
+                            {{Form::textarea('major_achievements', $application->major_achievements,['class'=>'form-control','required'=>'required','placeholder'=>'List Major Achievement of your Startup Company'])}}
                             @if ($errors->has('major_achievements'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('major_achievements') }}</b>
@@ -192,7 +192,7 @@
                     <div class="form-group py-2 {{ $errors->has('major_achievements') ? ' has-error' : '' }}">
                         {{Form::label('impact_of_startup', 'Impact of your startup towards the industry (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('impact_of_startup', null,['class'=>'form-control','required'=>'required','placeholder'=>'Write Impact of your startup towards the industry'])}}
+                            {{Form::textarea('impact_of_startup', $application->impact_of_startup,['class'=>'form-control','required'=>'required','placeholder'=>'Write Impact of your startup towards the industry'])}}
                             @if ($errors->has('impact_of_startup'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('impact_of_startup') }}</b>
@@ -204,7 +204,7 @@
                     <div class="form-group py-2 {{ $errors->has('growth_plan') ? ' has-error' : '' }}">
                         {{Form::label('growth_plan', 'What is the growth plan of your company? (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('growth_plan', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter growth plan'])}}
+                            {{Form::textarea('growth_plan', $application->growth_plan,['class'=>'form-control','required'=>'required','placeholder'=>'Enter growth plan'])}}
                             @if ($errors->has('growth_plan'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('growth_plan') }}</b>
@@ -216,7 +216,7 @@
                     <div class="form-group py-2 {{ $errors->has('award_recognition') ? ' has-error' : '' }}">
                         {{Form::label('award_recognition', 'Any other Awards / Recognition (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('award_recognition', null,['class'=>'form-control','required'=>'required','placeholder'=>'If you have won'])}}
+                            {{Form::textarea('award_recognition', $application->award_recognition,['class'=>'form-control','required'=>'required','placeholder'=>'If you have won'])}}
                             @if ($errors->has('award_recognition'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('award_recognition') }}</b>
@@ -228,7 +228,7 @@
                     <div class="form-group py-2 {{ $errors->has('why_your_startup') ? ' has-error' : '' }}">
                         {{Form::label('why_your_startup', 'Why do think you deserve this Award? (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('why_your_startup', null,['class'=>'form-control','required'=>'required','placeholder'=>''])}}
+                            {{Form::textarea('why_your_startup', $application->why_your_startup,['class'=>'form-control','required'=>'required','placeholder'=>''])}}
                             @if ($errors->has('why_your_startup'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('why_your_startup') }}</b>
@@ -239,6 +239,13 @@
 
                     <h5 class="text-capitalize">ATTACHMENT AND DOCUMENTATION</h5>
 
+                    @if($application->company_registration_document_file)
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <a target="_blank" href="{{url('uploads/award-application/'.$application->company_registration_document_file)}}" class="btn btn-primary">View Company Registration Document</a>
+                            </div>
+                        </div>
+                    @endif
                     <div class="form-group py-2 {{ $errors->has('company_registration_document_file') ? ' has-error' : '' }}">
                         {{Form::label('company_registration_document_file', 'Company Registration Document (PDF)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
@@ -251,8 +258,16 @@
                         </div>
                     </div>
 
+                    @if($application->tax_registration_document_file)
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <a target="_blank" href="{{url('uploads/award-application/'.$application->tax_registration_document_file)}}" class="btn btn-primary">View Tax Registration Document</a>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="form-group py-2 {{ $errors->has('tax_registration_document_file') ? ' has-error' : '' }}">
-                        {{Form::label('tax_registration_document_file', 'Tax Registration Document (PDF',['class'=>'col-sm-12 control-label pb-2'])}}
+                        {{Form::label('tax_registration_document_file', 'Tax Registration Document (PDF)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
                             {{ Form::file('tax_registration_document_file', ['class'=>'form-control']) }}
                             @if ($errors->has('tax_registration_document_file'))
@@ -263,6 +278,13 @@
                         </div>
                     </div>
 
+                    @if($application->startup_logo)
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <img src="{{url('uploads/award-application/'.$application->startup_logo)}}" class="img img-thumbnail" height="200px" alt="Responsive image">
+                            </div>
+                        </div>
+                    @endif
                     <div class="form-group py-2 {{ $errors->has('startup_logo') ? ' has-error' : '' }}">
                         {{Form::label('startup_logo', 'Startup logo (high quality)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
@@ -275,6 +297,14 @@
                         </div>
                     </div>
 
+
+                    @if($application->startup_pitch_deck)
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <a target="_blank" href="{{url('uploads/award-application/'.$application->startup_pitch_deck)}}" class="btn btn-primary">View Startup Pitch Deck</a>
+                            </div>
+                        </div>
+                    @endif
                     <div class="form-group py-2 {{ $errors->has('startup_pitch_deck') ? ' has-error' : '' }}">
                         {{Form::label('startup_pitch_deck', 'Startup Pitch Deck (PDF/PPT) ',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
@@ -292,7 +322,7 @@
                     <div class="form-group py-2 {{ $errors->has('list_of_social_media') ? ' has-error' : '' }}">
                         {{Form::label('list_of_social_media', 'List of Social Media Links (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('list_of_social_media', null,['class'=>'form-control','required'=>'required','placeholder'=>''])}}
+                            {{Form::textarea('list_of_social_media', $application->list_of_social_media,['class'=>'form-control','required'=>'required','placeholder'=>''])}}
                             @if ($errors->has('list_of_social_media'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('list_of_social_media') }}</b>
@@ -304,7 +334,7 @@
                     <div class="form-group py-2 {{ $errors->has('online_resources') ? ' has-error' : '' }}">
                         {{Form::label('online_resources', 'Online Resources / Media coverage/Useful links (if any)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::textarea('online_resources', null,['class'=>'form-control','placeholder'=>''])}}
+                            {{Form::textarea('online_resources', $application->online_resources,['class'=>'form-control','placeholder'=>''])}}
                             @if ($errors->has('online_resources'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('online_resources') }}</b>
@@ -318,7 +348,7 @@
                     <div class="form-group py-2 {{ $errors->has('contact_name') ? ' has-error' : '' }}">
                         {{Form::label('contact_name', 'Full Name (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('contact_name', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Name'])}}
+                            {{Form::text('contact_name', $application->contact_name,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Name'])}}
                             @if ($errors->has('contact_name'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('contact_name') }}</b>
@@ -330,7 +360,7 @@
                     <div class="form-group py-2 {{ $errors->has('contact_email') ? ' has-error' : '' }}">
                         {{Form::label('contact_email', 'Email (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('contact_email', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Email'])}}
+                            {{Form::text('contact_email', $application->contact_email,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Email'])}}
                             @if ($errors->has('contact_email'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('contact_email') }}</b>
@@ -342,7 +372,7 @@
                     <div class="form-group py-2 {{ $errors->has('contact_phone') ? ' has-error' : '' }}">
                         {{Form::label('contact_phone', 'Phone (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('contact_phone', null,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Phone'])}}
+                            {{Form::text('contact_phone', $application->contact_phone,['class'=>'form-control','required'=>'required','placeholder'=>'Enter Contact Phone'])}}
                             @if ($errors->has('contact_phone'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('contact_phone') }}</b>
@@ -351,7 +381,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-block" type="submit">Send Application</button>
+                    <button class="btn btn-primary btn-block" type="submit">Update Application</button>
                     {!! Form::close() !!}
                 </div>
             </div>

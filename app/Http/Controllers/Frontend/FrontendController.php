@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Award;
+use App\Models\AwardApplication;
 use App\Models\Banner;
 use App\Models\Event;
 use App\Models\Investment;
 use App\Models\Leader;
 use App\Models\Post;
+use App\Repositories\Award\AwardApplicationRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -100,14 +103,82 @@ class FrontendController extends Controller
         abort(404);
     }
 
+    public function awardApplicationShow($uid) {
+        $application = AwardApplication::where('uid', $uid)->first();
+        if ($application) {
+            return view('frontend.award_application',compact('application'));
+        }
+        abort(404);
+    }
+
     public function awardStore(Request $request) {
-//        $this->validate(
-//            $request,
-//            [
-//                'startup_name'=>'required'
-//            ]
-//        );
-        dd($request->all());
+        $this->validate(
+            $request,
+            [
+                'startup_name'=>'required',
+                'founder_names'=>'required',
+                'phone'=>'required',
+                'email'=>'required|email',
+                'city'=>'required',
+                'startup_description'=>'required',
+                'date_of_incorporation'=>'required',
+                'no_of_staff'=>'required',
+                'product_service'=>'required',
+                'achievements'=>'required',
+                'major_achievements'=>'required',
+                'impact_of_startup'=>'required',
+                'growth_plan'=>'required',
+                'award_recognition'=>'required',
+                'why_your_startup'=>'required',
+                'list_of_social_media'=>'required',
+                'contact_name'=>'required|min:10',
+                'contact_email'=>'required|email',
+                'contact_phone'=>'required',
+                'company_registration_document_file'=>'mimes:pdf',
+                'tax_registration_document_file'=>'mimes:pdf',
+                'startup_logo'=>'mimes:jpeg,bmp,png',
+                'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
+            ]
+        );
+
+        $application = (new AwardApplicationRepository())->store($request);
+        Session::flash('success','Your Application received successfully. We will get back to you through your contact details');
+        return redirect()->route('frontend.application.show', $application->uid);
+    }
+
+    public function awardUpdate(Request $request, $uid) {
+        $this->validate(
+            $request, [
+                'startup_name'=>'required',
+                'founder_names'=>'required',
+                'phone'=>'required',
+                'email'=>'required|email',
+                'city'=>'required',
+                'startup_description'=>'required',
+                'date_of_incorporation'=>'required',
+                'no_of_staff'=>'required',
+                'product_service'=>'required',
+                'achievements'=>'required',
+                'major_achievements'=>'required',
+                'impact_of_startup'=>'required',
+                'growth_plan'=>'required',
+                'award_recognition'=>'required',
+                'why_your_startup'=>'required',
+                'list_of_social_media'=>'required',
+                'contact_name'=>'required|min:10',
+                'contact_email'=>'required|email',
+                'contact_phone'=>'required',
+                'company_registration_document_file'=>'mimes:pdf',
+                'tax_registration_document_file'=>'mimes:pdf',
+                'startup_logo'=>'mimes:jpeg,bmp,png',
+                'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
+            ]
+        );
+
+        (new AwardApplicationRepository())->update($request, $uid);
+        $application = AwardApplication::where('uid', $uid)->first();
+        Session::flash('success','Your Application Updated successfully. Feel free to update any content before deadline for this application');
+        return redirect()->route('frontend.application.show', $application->uid);
     }
 
     public function contact()

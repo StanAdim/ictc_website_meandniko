@@ -25,6 +25,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('awards/{slug}', 'FrontendController@singleAward')->name('awards.single');
     Route::get('awards/{slug}/apply', 'FrontendController@applyAward')->name('award.apply');
     Route::post('awards/application/store', 'FrontendController@awardStore')->name('application.store');
+    Route::put('awards/application/{uid}/update', 'FrontendController@awardUpdate')->name('application.update');
+    Route::get('award-application/{uid}/show', 'FrontendController@awardApplicationShow')->name('application.show');
     Route::get('investments', 'FrontendController@investments')->name('investments');
     Route::get('investments/{slug}', 'FrontendController@singleInvestment')->name('investments.single');
 

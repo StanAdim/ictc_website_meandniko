@@ -15,6 +15,7 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uid');
             $table->string('slug')->unique()->index();
 
             $table->string('title_sw');

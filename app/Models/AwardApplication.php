@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class Award extends Model
+class AwardApplication extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -15,11 +15,14 @@ class Award extends Model
     public static function boot()
     {
         parent::boot();
-
         // Create uid when creating list.
         static::creating(function ($model) {
             // Create new uid
             $model->uid = (string) Uuid::generate(4);
         });
+    }
+
+    public function award() {
+        return $this->belongsTo(Award::class);
     }
 }

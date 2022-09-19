@@ -13,9 +13,7 @@ class CreateAwardApplicationsTable extends Migration
      */
     public function up()
     {
-//  "contact_name" => null
-//  "contact_email" => null
-//  "contact_phone" => null
+        Schema::dropIfExists('award_applications');
         Schema::create('award_applications', function (Blueprint $table) {
             $table->id();
             $table->uuid('uid');
@@ -32,7 +30,7 @@ class CreateAwardApplicationsTable extends Migration
 
             $table->integer('no_of_staff');
             $table->string('product_service');
-            $table->string('website');
+            $table->string('website')->nullable();
 
             $table->text('achievements');
             $table->text('major_achievements');
@@ -64,6 +62,6 @@ class CreateAwardApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('award_applications');
     }
 }
