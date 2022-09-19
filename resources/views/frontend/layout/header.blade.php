@@ -52,38 +52,24 @@
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.home') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.home')}}">Home</a></li>
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.about') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.about')}}">About</a></li>
-                                <li class="rd-nav-item {{ request()->routeIs('frontend.investments') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.investments')}}">ICT PROMOTION</a></li>
+                                <li class="rd-nav-item {{ request()->url() == url('/ict-promotion') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.page', 'ict-promotion')}}">ICT PROMOTION</a></li>
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.investments') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.investments')}}">ICT INVESTMENT</a></li>
-                                {{--<li class="rd-nav-item"><a class="rd-nav-link" href="#"</a>--}}
-                                    {{--<!-- RD Navbar Dropdown-->--}}
-                                    {{--<ul class="rd-menu rd-navbar-dropdown">--}}
-                                        {{--<li class="rd-dropdown-item">--}}
-                                            {{--<a class="rd-dropdown-link" href="government.html">Startup Company</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li class="rd-dropdown-item">--}}
-                                            {{--<a class="rd-dropdown-link" href="government.html">Digital Incubation</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li class="rd-dropdown-item">--}}
-                                            {{--<a class="rd-dropdown-link" href="government.html">Digital Accelerators</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</li>--}}
 
                                 <li class="rd-nav-item">
-                                    <a class="rd-nav-link" href="departments.html">SERVICES</a>
+                                    <a class="rd-nav-link" href="#">SERVICES</a>
                                     <!-- RD Navbar Dropdown-->
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="departments.html">ICT PROFESSIONAL</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-professional')}}">ICT PROFESSIONAL</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="single-department.html">SOFTCENTRE</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'softcentre')}}">SOFTCENTRE</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="single-department.html">TRAINING</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'training')}}">TRAINING</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="single-department.html">ICT RESEARCH</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-research')}}">ICT RESEARCH</a>
                                         </li>
                                     </ul>
                                 </li>

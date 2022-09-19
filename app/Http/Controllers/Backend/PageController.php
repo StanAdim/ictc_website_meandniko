@@ -45,6 +45,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'slug'=>'required',
             'title_sw'=>'required',
             'title_en'=>'required',
             'description_sw'=>'required',
@@ -92,6 +93,7 @@ class PageController extends Controller
     {
 //        dd($request->all());
         $this->validate($request,[
+            'slug'=>'required',
             'title_sw'=>'required',
             'title_en'=>'required',
             'description_sw'=>'required',

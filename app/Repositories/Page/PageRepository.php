@@ -20,7 +20,6 @@ class PageRepository extends BaseRepository
     public function store($request)
     {
         return DB::transaction(function () use ($request) {
-
             $file_sw = $request->file('photo_sw');
             $file_en = $request->file('photo_en');
 
@@ -29,21 +28,21 @@ class PageRepository extends BaseRepository
                 $filename_sw = Str::random(30) . '.' . $file_sw->getClientOriginalExtension();
                 $file_sw->move($this->destinationPath, $filename_sw);
             } else {
-                $filename_sw = 'noimg.png';
+                $filename_sw = null;
             }
 
             if ($file_en) {
                 $filename_en = Str::random(30).'.'.$file_en->getClientOriginalExtension();
                 $file_en->move($this->destinationPath, $filename_en);
             } else {
-                $filename_sw = 'noimg.png';
+                $filename_en = null;
             }
             $this->query()->create([
                 'title_sw' => $request->title_sw,
                 'title_en' => $request->title_en,
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
-                'slug' => Str::slug($request->title_en),
+                'slug' => Str::slug($request->slug),
                 'status' => 1,
                 'file_sw' => $filename_sw,
                 'file_en' => $filename_en
@@ -62,7 +61,7 @@ class PageRepository extends BaseRepository
             if ($file_sw) {
                 $filename_sw = Str::random(30).'.'.$file_sw->getClientOriginalExtension();
                 $file_sw->move($this->destinationPath, $filename_sw);
-                if ($page->file_sw != 'noimg.png') {
+                if ($page->file_sw) {
                     File::delete($this->destinationPath.'/'.$page->file_sw);
                 }
             } else {
@@ -72,7 +71,7 @@ class PageRepository extends BaseRepository
             if ($file_en) {
                 $filename_en = Str::random(30) . '.' . $file_en->getClientOriginalExtension();
                 $file_en->move($this->destinationPath, $filename_en);
-                if ($page->file_en != 'noimg.png') {
+                if ($page->file_en) {
                     File::delete($this->destinationPath.'/'.$page->file_en);
                 }
             } else {
@@ -84,7 +83,7 @@ class PageRepository extends BaseRepository
                 'title_en' => $request->title_en,
                 'description_sw' => $request->description_sw,
                 'description_en' => $request->description_en,
-                'slug' => Str::slug($request->title_en),
+                'slug' => Str::slug($request->slug),
                 'file_sw' => $filename_sw,
                 'file_en' => $filename_en
             ]);

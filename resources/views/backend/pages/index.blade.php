@@ -1,5 +1,5 @@
 @extends('backend.main')
-@section('title', 'Pages List')
+@section('title', 'Page List')
 
 @section('stylesheets')
     <!--DataTables [ OPTIONAL ]-->
@@ -49,6 +49,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Url</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Created date</th>
@@ -67,6 +68,7 @@
                             ?>
                             <tr>
                                 <td>{{$index}}</td>
+                                <td>{{$page->slug}}</td>
                                 <td>{{$page->$title_var ?? $title_var2}}</td>
                                 <td>
                                     {{ substr(strip_tags($page->$description_var ?? $description_var2),0,200) }} ...

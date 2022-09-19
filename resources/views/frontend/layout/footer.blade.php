@@ -80,7 +80,9 @@
                     <span>&copy;&nbsp;2016 - </span>
                     <span class="copyright-year"></span>
                     <span>&nbsp;</span>
-                    <span>All Rights Reserved.</span>
+                    <span>All Rights Reserved. Powered by
+                        <a target="_blank" href="https://www.wavesleek.co.tz">Wavesleek LTD</a>
+                    </span>
                     <!--<span>&nbsp;</span><br class="d-sm-none"/>-->
                     <!--<a href="terms-of-use.html">Terms of Use</a>-->
                     <!--<span> and</span>-->

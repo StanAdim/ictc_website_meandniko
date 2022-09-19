@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('investments/{slug}', 'FrontendController@singleInvestment')->name('investments.single');
 
     Route::get('contact', 'FrontendController@contact')->name('contact');
+    Route::get('{slug}', 'FrontendController@viewPage')->name('page');
 });
 
 

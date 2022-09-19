@@ -9,6 +9,7 @@ use App\Models\Banner;
 use App\Models\Event;
 use App\Models\Investment;
 use App\Models\Leader;
+use App\Models\Page;
 use App\Models\Post;
 use App\Repositories\Award\AwardApplicationRepository;
 use Illuminate\Http\Request;
@@ -185,6 +186,16 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
 //                ->with('user', $user);
+    }
+
+    public function viewPage($slug)
+    {
+        $page = Page::whereSlug($slug)->first();
+        if ($page) {
+            return view('frontend.page')
+                ->with('page', $page);
+        }
+        abort(404);
     }
 
 

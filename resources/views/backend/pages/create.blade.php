@@ -1,6 +1,6 @@
 @extends('backend.main')
 
-@section('title', 'New Pages')
+@section('title', 'New Page')
 
 @section('stylesheets')
     <!--Bootstrap Datepicker [ Required ]-->
@@ -48,6 +48,18 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
+                                        {{Form::label('slug', 'Url (*)',['class'=>'col-sm-3 control-label'])}}
+                                        <div class="col-sm-9">
+                                            {{Form::text('slug', null,['class'=>'form-control','placeholder'=>'Enter Slug'])}}
+                                            @if ($errors->has('slug'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('slug') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group {{ $errors->has('title_sw') ? ' has-error' : '' }}">
                                         {{Form::label('title_sw', 'Title SW (*)',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
