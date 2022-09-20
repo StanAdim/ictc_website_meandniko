@@ -72,8 +72,8 @@
         <div class="container">
             <div class="footer-advanced-layout">
                 <a class="brand" href="{{route('frontend.home')}}">
-                    <img src="images/logo-default-125x71.png" alt="" width="83" height="49"
-                         srcset="images/logo-default-125x71.png 2x"/>
+                    <img src="{{url('/images/logo-default-125x71.png')}}" alt="" width="83" height="49"
+                         srcset="{{url('/images/logo-default-125x71.png')}} 2x"/>
                 </a>
                 <!-- Rights-->
                 <p class="rights">
