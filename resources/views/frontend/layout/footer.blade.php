@@ -47,7 +47,7 @@
                 <div>
                     <ul class="list-nav">
                         <li><a href="{{route('frontend.home')}}">Home</a></li>
-                        <li><a href="{{route('frontend.about')}}">About</a></li>
+                        <li><a href="{{route('frontend.page', 'about')}}">About</a></li>
                         <li><a href="{{route('frontend.events')}}">Events</a></li>
                         <li><a href="{{route('frontend.news')}}">News</a></li>
                         <li><a href="{{route('frontend.contact')}}">Contacts</a></li>
@@ -71,7 +71,7 @@
     <div class="footer-advanced-aside">
         <div class="container">
             <div class="footer-advanced-layout">
-                <a class="brand" href="index.html">
+                <a class="brand" href="{{route('frontend.home')}}">
                     <img src="images/logo-default-125x71.png" alt="" width="83" height="49"
                          srcset="images/logo-default-125x71.png 2x"/>
                 </a>

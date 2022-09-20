@@ -19,7 +19,7 @@ Route::get('debug', function () {
 });
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index')->name('home');
-    Route::get('about', 'FrontendController@about')->name('about');
+//    Route::get('about', 'FrontendController@about')->name('about');
     Route::get('news', 'FrontendController@news')->name('news');
     Route::get('news/{slug}', 'FrontendController@singleNews')->name('news.single');
     Route::get('events', 'FrontendController@events')->name('events');

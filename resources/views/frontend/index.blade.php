@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-md-12 text-center my-2">
                                         <h6 class="text-bold font-15">{{$leader->$title}}</h6>
-                                        <span class="font-14">{{$leader->$position}}</span> <br>
+                                        <span class="font-14 text-primary">{{$leader->$position}}</span> <br>
                                         <a class="button button-primary-outline button-winona wow slideInUp" href="services.html" style="visibility: visible; animation-name: slideInUp;">
                                             <div class="content-original">View Profile</div>
                                             <div class="content-dubbed">View Profile</div>

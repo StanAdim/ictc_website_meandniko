@@ -51,7 +51,7 @@
                         <div class="rd-navbar-nav-wrap" id="rd-navbar-nav-wrap-1">
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.home') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.home')}}">Home</a></li>
-                                <li class="rd-nav-item {{ request()->routeIs('frontend.about') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.about')}}">About</a></li>
+                                <li class="rd-nav-item {{ request()->url() == url('/about') ? 'active' : '' }}"><a class="rd-nav-link" href="{{route('frontend.page', 'about')}}">About</a></li>
                                 <li class="rd-nav-item {{ request()->url() == url('/ict-promotion') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.page', 'ict-promotion')}}">ICT PROMOTION</a></li>
                                 <li class="rd-nav-item {{ request()->routeIs('frontend.investments') ? 'active' : ''  }}"><a class="rd-nav-link" href="{{route('frontend.investments')}}">ICT INVESTMENT</a></li>
 
