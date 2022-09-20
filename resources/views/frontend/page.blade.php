@@ -12,7 +12,7 @@ $description_var2 = "description_" . env('DEFAULT_LANGUAGE');
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <article class="post-creative">
+                    <article class="post-creative mb-4">
                         @if($page->$title_var)
                             <h3 class="post-creative-title">
                                 {{$page->$title_var ?? $title_var2}}
@@ -24,12 +24,7 @@ $description_var2 = "description_" . env('DEFAULT_LANGUAGE');
                         @endif
 
                         {!! $page->$description_var ?? $description_var2 !!}
-                        <ul class="post-creative-footer">
-                            <li>Share this page!</li>
-                            <li>
-                                <div class="group group-xs group-middle"><a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a></div>
-                            </li>
-                        </ul>
+
                     </article>
                 </div>
                 <div class="col-lg-4">

@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('debug', function () {
+    dd(\App\Models\General::first());
+});
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index')->name('home');
     Route::get('about', 'FrontendController@about')->name('about');
@@ -31,6 +34,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('investments/{slug}', 'FrontendController@singleInvestment')->name('investments.single');
 
     Route::get('contact', 'FrontendController@contact')->name('contact');
+    Route::post('contact/store', 'FrontendController@contactStore')->name('contact.store');
     Route::get('{slug}', 'FrontendController@viewPage')->name('page');
 });
 

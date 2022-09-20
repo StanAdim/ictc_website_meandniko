@@ -16,8 +16,6 @@ class BannersSeeder extends Seeder
      */
     public function run()
     {
-//        $banner = Banner::all();
-//        if (count($banner)  > 0) {
             $this->disableForeignKeys("banners");
             $this->delete('banners');
 

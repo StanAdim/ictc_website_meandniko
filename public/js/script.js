@@ -744,9 +744,9 @@
 		}
 
 		// Google maps
+		console.log('plugins.maps', plugins.maps);
 		if( plugins.maps.length ) {
 			var key;
-
 			for ( var i = 0; i < plugins.maps.length; i++ ) {
 				if ( plugins.maps[i].hasAttribute( "data-key" ) ) {
 					key = plugins.maps[i].getAttribute( "data-key" );
@@ -754,7 +754,7 @@
 				}
 			}
 
-			$.getScript('//maps.google.com/maps/api/js?'+ ( key ? 'key='+ key + '&' : '' ) +'sensor=false&libraries=geometry,places&v=3.7', function () {
+			$.getScript('https://maps.google.com/maps/api/js?'+ ( key ? 'key='+ key + '&' : '' ) +'sensor=false&libraries=geometry,places&v=3.7', function () {
 				var head = document.getElementsByTagName('head')[0],
 					insertBefore = head.insertBefore;
 
@@ -790,12 +790,14 @@
 
 					// Add markers from google-map-markers array
 					var markerItems = plugins.maps[i].querySelectorAll(".google-map-markers li");
-
-					if (markerItems.length){
+console.log(markerItems);
+					if (markerItems.length) {
 						var markers = [];
 						for (var j = 0; j < markerItems.length; j++){
 							var markerElement = markerItems[j];
-							getLatLngObject(markerElement.getAttribute("data-location"), markerElement, plugins.maps[i], function(location, markerElement, mapElement){
+							getLatLngObject(markerElement.getAttribute("data-location"), markerElement, plugins.maps[i], function(location, markerElement, mapElement) {
+								console.log(markerElement.getAttribute("data-icon"));
+								console.log(mapElement.getAttribute("data-icon"));
 								var icon = markerElement.getAttribute("data-icon") || mapElement.getAttribute("data-icon");
 								var activeIcon = markerElement.getAttribute("data-icon-active") || mapElement.getAttribute("data-icon-active");
 								var info = markerElement.getAttribute("data-description") || "";
@@ -807,7 +809,7 @@
 									position: location,
 									map: mapElement.map
 								}
-								if (icon){
+								if (icon) {
 									markerData.icon = icon;
 								}
 								var marker = new google.maps.Marker(markerData);

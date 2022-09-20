@@ -12,6 +12,7 @@ use App\Models\Leader;
 use App\Models\Page;
 use App\Models\Post;
 use App\Repositories\Award\AwardApplicationRepository;
+use App\Repositories\Contact\ContactRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -147,6 +148,7 @@ class FrontendController extends Controller
         return redirect()->route('frontend.application.show', $application->uid);
     }
 
+
     public function awardUpdate(Request $request, $uid) {
         $this->validate(
             $request, [
@@ -187,6 +189,22 @@ class FrontendController extends Controller
         return view('frontend.contact');
 //                ->with('user', $user);
     }
+    public function contactStore(Request $request) {
+        $this->validate(
+            $request, [
+                'first_name'=>'required|min:3',
+                'last_name'=>'required|string|min:3',
+                'email'=>'required|email',
+                'message'=>'required',
+
+            ]
+        );
+
+        (new ContactRepository())->store($request);
+        Session::flash('success','Your Message has been sent successfully. Thank you for getting in touch!');
+        return redirect()->route('frontend.contact');
+    }
+
 
     public function viewPage($slug)
     {

@@ -3,14 +3,14 @@
         @if (Session::has('success'))
             <div class="alert alert-success">
                 <button class="close" data-dismiss="alert"><i class="pci-cross pci-circle"></i></button>
-                <strong>Well done!</strong> {{ Session::get('success') }}
+                <b>Well done!</b> {{ Session::get('success') }}
             </div>
         @endif
 
         @if (Session::has('failed'))
             <div class="alert alert-danger">
                 <button class="close" data-dismiss="alert"><i class="pci-cross pci-circle"></i></button>
-                <strong>Something Wrong!</strong> {{ Session::get('failed') }}
+                <b>Something Wrong!</b> {{ Session::get('failed') }}
             </div>
         @endif
     </div>
