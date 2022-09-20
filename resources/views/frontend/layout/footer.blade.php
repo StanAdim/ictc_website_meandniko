@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-7 col-md-5 col-lg-4">
                     <h4>Recent News</h4>
-                    @foreach($posts as $post)
+                @foreach($posts as $post)
                     <!-- Post Inline-->
                         <article class="post-inline">
                             <p class="post-inline-title">
@@ -33,9 +33,9 @@
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="https://www.mawasiliano.go.tz/">Mawasiliano</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="https://www.tcra.go.tz/">TCRA</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="https://www.ega.go.tz/">EGA</a></li>
+                        @foreach(\App\Models\Link::all() as $link)
+                        <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="{{$link->link}}">{{$link->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -55,11 +55,9 @@
                 </div>
                 <div>
                     <ul class="list-inline list-inline-sm">
-                        <li><a class="icon icon-sm link-default mdi mdi-facebook" href="#"></a></li>
-                        <li><a class="icon icon-sm link-default mdi mdi-twitter" href="#"></a></li>
-                        <li><a class="icon icon-sm link-default mdi mdi-instagram" href="#"></a></li>
-                        <li><a class="icon icon-sm link-default mdi mdi-google" href="#"></a></li>
-                        {{--<li><a class="icon icon-sm link-default mdi mdi-linkedin" href="#"></a></li>--}}
+                        @foreach(\App\Models\Social::all() as $social)
+                            <li><a target="_blank" class="icon icon-sm link-default mdi mdi-{{$social->type}}" href="{{$social->link}}"></a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

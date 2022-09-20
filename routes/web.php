@@ -60,4 +60,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::resource('awards','AwardController');
     Route::resource('investments','InvestmentController');
     Route::resource('pages','PageController');
+    Route::resource('socials','SocialController');
+    Route::resource('links','LinkController');
 });

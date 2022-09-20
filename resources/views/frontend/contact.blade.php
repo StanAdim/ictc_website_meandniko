@@ -106,10 +106,3 @@
         </div>
     </section>
 @endsection
-@push('after-scripts')
-
-@endpush
-
-@push('after-styles')
-
-@endpush

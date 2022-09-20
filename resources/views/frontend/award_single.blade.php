@@ -36,10 +36,16 @@
 
                         {!! $award->$description_var ?? $description_var2 !!}
                         <ul class="post-creative-footer">
-                            <li>Share this post!</li>
-                            <li>
-                                <div class="group group-xs group-middle"><a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a></div>
-                            </li>
+                            {{--<li>Share this post!</li>--}}
+                            {{--<li>--}}
+                                {{--<div class="group group-xs group-middle">--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a>--}}
+                                {{--</div>--}}
+                            {{--</li>--}}
                         </ul>
                     </article>
                 </div>

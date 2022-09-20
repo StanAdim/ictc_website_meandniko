@@ -195,8 +195,7 @@ class FrontendController extends Controller
                 'first_name'=>'required|min:3',
                 'last_name'=>'required|string|min:3',
                 'email'=>'required|email',
-                'message'=>'required',
-
+                'message'=>'required'
             ]
         );
 

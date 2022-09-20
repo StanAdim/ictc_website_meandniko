@@ -35,10 +35,16 @@
 
                         {!! $investment->$description_var ?? $description_var2 !!}
                         <ul class="post-creative-footer">
-                            <li>Share this post!</li>
-                            <li>
-                                <div class="group group-xs group-middle"><a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a><a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a></div>
-                            </li>
+                            {{--<li>Share this post!</li>--}}
+                            {{--<li>--}}
+                                {{--<div class="group group-xs group-middle">--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a>--}}
+                                    {{--<a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a>--}}
+                                {{--</div>--}}
+                            {{--</li>--}}
                         </ul>
                     </article>
                 </div>
@@ -48,11 +54,9 @@
                         <div class="profile-thin-main">
                             <p class="profile-thin-title">ICTC Administrator</p>
                             <div class="group group-xs group-middle">
-                                <a class="icon icon-sm icon-creative mdi mdi-facebook" href="#"></a>
-                                <a class="icon icon-sm icon-creative mdi mdi-twitter" href="#"></a>
-                                <a class="icon icon-sm icon-creative mdi mdi-instagram" href="#"></a>
-                                <a class="icon icon-sm icon-creative mdi mdi-google" href="#"></a>
-                                <a class="icon icon-sm icon-creative mdi mdi-linkedin" href="#"></a>
+                                @foreach(\App\Models\Social::all() as $social)
+                                    <a target="_blank" class="icon icon-sm icon-creative mdi mdi-{{$social->type}}" href="{{$social->link}}"></a>
+                                @endforeach
                             </div>
                             <a class="button button-sm button-primary-outline button-winona" href="{{route('frontend.contact')}}">Contact Us</a>
                         </div>

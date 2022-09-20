@@ -99,57 +99,26 @@
                                 </a>
                             </li>
 
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.socials.index','backend.socials.show','backend.socials.create','backend.socials.edit'])}}">
+                                <a href="{{ route('backend.socials.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Social Accounts</strong>
+                                    </span>
+                                </a>
+                            </li>
 
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['breakdowns.index','breakdowns.show','breakdowns.create','breakdowns.edit'])}}">--}}
-                                {{--<a href="{{ route('breakdowns.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-tasks"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Breakdowns</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.links.index','backend.links.show','backend.links.create','backend.links.edit'])}}">
+                                <a href="{{ route('backend.links.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Useful Links</strong>
+                                    </span>
+                                </a>
+                            </li>
 
-
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['work_order.index','work_order.show','work_order.create.work_order','work_order.edit'])}}">--}}
-                                {{--<a href="{{ route('work_order.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-tasks"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Work Orders</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-
-
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['inspection.index','inspection.view', 'inspection.create'])}}">--}}
-                                {{--<a href="{{ route('inspection.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-briefcase"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Inspections</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['service.index'])}}">--}}
-                                {{--<a href="{{ route('service.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-briefcase"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Services</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-                            {{--<!--Menu list item-->--}}
-                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['report.index', 'report.equipment_job_card', 'report.current_spare', 'report.equipment_expenses_report'])}}">--}}
-                                {{--<a href="{{ route('report.index') }}">--}}
-                                    {{--<i class="glyphicon glyphicon-briefcase"></i>--}}
-                                    {{--<span class="menu-title">--}}
-                                        {{--<strong>Reports</strong>--}}
-                                    {{--</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
                         </ul>
                     @endif
                 </div>
