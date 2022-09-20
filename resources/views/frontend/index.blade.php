@@ -65,7 +65,7 @@
                                         <a class="button button-primary-outline button-winona wow slideInUp" href="services.html" style="visibility: visible; animation-name: slideInUp;">
                                             <div class="content-original">View Profile</div>
                                             <div class="content-dubbed">View Profile</div>
-                                        </a>
+                                        </a>"
                                         {{--<button class="button button-sm button-primary mt-0">Tazama Wasifu</button>--}}
                                     </div>
                                 </a>
@@ -191,7 +191,7 @@
         <section class="section section-1 bg-primary text-center">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-sm-10 col-lg-7 col-xl-6">
+                    <div class="col-sm-10 col-lg-7 col-xl-8">
                         <h3 class="wow-outer">
                         <span class="wow slideInDown">
                             {{$home_section_2->$title}}

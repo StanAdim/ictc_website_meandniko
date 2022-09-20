@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('debug', function () {
     dd(\App\Models\General::first());
 });
+Auth::routes();
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index')->name('home');
 //    Route::get('about', 'FrontendController@about')->name('about');
@@ -44,7 +45,6 @@ Route::get('logout', function () {
     return redirect()->route('frontend.home');
 
 });
-Auth::routes();
 
 Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth']], function () {
     Route::get('file-manager/tinymce5', function () {
