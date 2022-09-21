@@ -74,6 +74,7 @@
                                 <td>{{date('Y-m-d',strtotime($award->created_at))}}</td>
                                 <td>
                                     <a class="btn btn-primary btn-xs" href="{{route('backend.awards.edit',$award->id)}}">Edit</a>
+                                    <a class="btn btn-success btn-xs" href="{{route('backend.awards.show',$award->id)}}">Show</a>
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal{{$award->id}}">
                                         Delete
                                     </button>

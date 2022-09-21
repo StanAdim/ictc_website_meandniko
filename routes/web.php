@@ -62,4 +62,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::resource('pages','PageController');
     Route::resource('socials','SocialController');
     Route::resource('links','LinkController');
+
+    Route::post('award/categories/store', 'AwardCategoryController@store')->name('award.category.store');
+    Route::put('award/categories/{id}/update', 'AwardCategoryController@update')->name('award.category.update');
+    Route::delete('award/categories/{id}/destroy', 'AwardCategoryController@destroy')->name('award.category.destroy');
+
 });

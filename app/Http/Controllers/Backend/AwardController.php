@@ -59,15 +59,11 @@ class AwardController extends Controller
         return redirect()->route('backend.awards.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Award $award
-     * @return void
-     */
-    public function show(Award $award)
+
+    public function show($id)
     {
-        //
+        $award=Award::find($id);
+        return view('backend.awards.show')->withAward($award);
     }
 
     /**

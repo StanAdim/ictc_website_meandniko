@@ -15,11 +15,18 @@ class Award extends Model
     public static function boot()
     {
         parent::boot();
-
         // Create uid when creating list.
         static::creating(function ($model) {
             // Create new uid
             $model->uid = (string) Uuid::generate(4);
         });
+    }
+
+    public function categories() {
+        return $this->hasMany(AwardCategory::class, 'award_id');
+    }
+
+    public function applications() {
+        return $this->hasMany(AwardApplication::class, 'award_id');
     }
 }

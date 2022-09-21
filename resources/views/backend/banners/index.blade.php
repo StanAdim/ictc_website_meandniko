@@ -106,6 +106,7 @@
                                     </form>
                                 </div>
                             </div>
+
                         @endforeach
                         </tbody>
                     </table>
