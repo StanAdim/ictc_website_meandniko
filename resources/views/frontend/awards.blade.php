@@ -4,37 +4,31 @@
         <div class="container">
             <div class="row row-50 justify-content-center justify-content-lg-between align-items-center align-items-xl-start">
                 <div class="col-md-10 col-lg-6 col-xl-5">
-                    <h3>Awards</h3>
-                    <!-- Bootstrap tabs-->
-                    <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
-                        <!-- Nav tabs-->
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">Mission</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">Vision</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">Wanufaika</a></li>
-                        </ul>
-                        <!-- Tab panes-->
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tabs-1-1">
-                                <p>Hercle, boreas fidelis!, teres mensa! Calceuss peregrinatione in emeritis mare! Cur nuclear vexatum iacere prarere?</p>
-                                <p>Pulchritudines assimilant! Ferox onus sed mire perderes impositio est. A falsis, zelus nobilis planeta. Fiscinas peregrinatione in antverpia! Brabeuta teres onus est. Pol, peritus poeta! Sunt bursaes examinare secundus, placidus racanaes.</p>
-                            </div>
-                            <div class="tab-pane fade" id="tabs-1-2">
-                                <ul class="list-marked">
-                                    <li>Velox animalis aliquando falleres lanista est.</li>
-                                    <li>Talis impositios ducunt ad fuga. Bassus, grandis eposs patienter contactus de clemens, domesticus hydra. Hydra, demolitione, et clabulare.</li>
-                                    <li>Brevis, albus homos unus magicae de fortis, placidus equiso.</li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane fade" id="tabs-1-3">
-                                <ul class="list-marked">
-                                    <li>Nunquam manifestum ignigena.</li>
-                                    <li>Cum ionicis tormento favere, omnes fluctuies captis regius, grandis monses. Gratis vortexs ducunt ad mons.</li>
-                                    <li>Pius, ferox ignigenas velox experientia de alter, raptus racana.</li>
-                                </ul>
-                            </div>
+                    @php
+                        $awards_section = \App\Models\Section::where('slug', 'awards-section')->first();
+                    @endphp
+                    @if($awards_section)
+                        @php
+                            $lang = App\Helpers\Helper::currentLanguage();
+                            $title = 'title_'.$lang->code;
+                            $description = 'description_'.$lang->code;
+                        @endphp
+                        <div class="inset-left-2">
+                            <h3>{{$awards_section->$title}}</h3>
+                            {!! $awards_section->$description !!}
+                            {{--<a class="button button-primary button-winona" href="#" style="min-width: 230px;"><div class="content-original">Read more</div><div class="content-dubbed">Read more</div></a>--}}
                         </div>
-                    </div>
+                    @else
+                        @if(\Illuminate\Support\Facades\Auth::user())
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text-center">Add Section with <strong><i>awards-section</i></strong> slug here with title, description, link url and link title only</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
                 </div>
                 <div class="col-md-10 col-lg-6">
                     <img class="img img-thumbnail img-responsive" src="{{url('images/award.png')}}" alt="" width="570" height="400"/>
