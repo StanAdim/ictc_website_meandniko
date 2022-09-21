@@ -36,10 +36,10 @@
                 </div>
             </div>
 
-            @include('backend.partials._alert');
 
             <div class="row mt-2">
                 <div class="offset-md-2 col-md-8">
+                    @include('backend.partials._alert');
                     {!! Form::model($application, ['route' => ['frontend.application.update', $application->uid], 'class'=>'form-horizontal', 'method'=>'PUT', 'autocomplete'=>'off', 'files' => true]) !!}
                     <h5 class="text-capitalize">PRIMARY CONTACT INFORMATION</h5>
                     <div class="form-group py-2 {{ $errors->has('startup_name') ? ' has-error' : '' }}">
@@ -49,6 +49,19 @@
                             @if ($errors->has('startup_name'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('startup_name') }}</b>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <div class="form-group py-2 {{ $errors->has('category') ? ' has-error' : '' }}">
+                        {{Form::label('category', 'Select Award Categories(s) (*)',['class'=>'col-sm-12 control-label pb-2'])}}
+                        <div class="col-sm-12">
+                            {{Form::select('category[]',$categories, null,['class'=>'form-control select2','required'=>'required'])}}
+                            @if ($errors->has('category'))
+                                <span class="help-block">
+                                    <b>{{ $errors->first('category') }}</b>
                                 </span>
                             @endif
                         </div>
@@ -316,6 +329,17 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group py-2 {{ $errors->has('pitchdeck_youtube_link') ? ' has-error' : '' }}">
+                        {{Form::label('pitchdeck_youtube_link', "Startup's pitch (video or animation of  2-3 minutes) Youtube link (*)",['class'=>'col-sm-12 control-label pb-2'])}}
+                        <div class="col-sm-12">
+                            {{Form::text('pitchdeck_youtube_link', $application->pitchdeck_youtube_link,['class'=>'form-control','placeholder'=>''])}}
+                            @if ($errors->has('pitchdeck_youtube_link'))
+                                <span class="help-block">
+                                    <b>{{ $errors->first('pitchdeck_youtube_link') }}</b>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
 
                     <h5 class="text-capitalize">SOCIAL MEDIA AND LINKS</h5>
 
@@ -389,7 +413,26 @@
     </section>
 @endsection
 @push('after-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        var categories = {!! json_encode($application->categories()->pluck('award_category_id')) !!}
+        console.log(categories);
+        $(".select2").select2({
+            dropdownAutoWidth: true,
+            multiple: true,
+            theme: "bootstrap",
+            placeholder: "Select Award Categories",
+            allowClear: true
+        }).val(categories).trigger('change.select2');
+    </script>
 @endpush
 
 @push('after-styles')
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <style type="text/css">
+        .select2-container--default .select2-selection--multiple {
+            padding-bottom: 38px;
+        }
+    </style>
 @endpush

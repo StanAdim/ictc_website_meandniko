@@ -99,16 +99,18 @@ class FrontendController extends Controller
 
     public function applyAward($slug) {
         $award = Award::where('slug', $slug)->first();
+        $categories = $award->categories()->pluck('title','id');
         if ($award) {
-            return view('frontend.apply_award',compact('award'));
+            return view('frontend.apply_award',compact('award','categories'));
         }
         abort(404);
     }
 
     public function awardApplicationShow($uid) {
         $application = AwardApplication::where('uid', $uid)->first();
+        $categories = $application->award->categories()->pluck('title','id');
         if ($application) {
-            return view('frontend.award_application',compact('application'));
+            return view('frontend.award_application',compact('application','categories'));
         }
         abort(404);
     }
@@ -118,6 +120,7 @@ class FrontendController extends Controller
             $request,
             [
                 'startup_name'=>'required',
+                'category'  => 'required|array|min:1',
                 'founder_names'=>'required',
                 'phone'=>'required',
                 'email'=>'required|email',
@@ -132,6 +135,7 @@ class FrontendController extends Controller
                 'growth_plan'=>'required',
                 'award_recognition'=>'required',
                 'why_your_startup'=>'required',
+                'pitchdeck_youtube_link'=>'required',
                 'list_of_social_media'=>'required',
                 'contact_name'=>'required|min:10',
                 'contact_email'=>'required|email',
@@ -144,7 +148,7 @@ class FrontendController extends Controller
         );
 
         $application = (new AwardApplicationRepository())->store($request);
-        Session::flash('success','Your Application received successfully. We will get back to you through your contact details');
+        Session::flash('success','Your Application has been received successfully. We will get back to you through your contact details');
         return redirect()->route('frontend.application.show', $application->uid);
     }
 
@@ -153,6 +157,7 @@ class FrontendController extends Controller
         $this->validate(
             $request, [
                 'startup_name'=>'required',
+                'category'  => 'required|array|min:1',
                 'founder_names'=>'required',
                 'phone'=>'required',
                 'email'=>'required|email',
@@ -168,6 +173,7 @@ class FrontendController extends Controller
                 'award_recognition'=>'required',
                 'why_your_startup'=>'required',
                 'list_of_social_media'=>'required',
+                'pitchdeck_youtube_link'=>'required',
                 'contact_name'=>'required|min:10',
                 'contact_email'=>'required|email',
                 'contact_phone'=>'required',

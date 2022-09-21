@@ -106,7 +106,6 @@
                                     </form>
                                 </div>
                             </div>
-
                         @endforeach
                         </tbody>
                     </table>
@@ -116,6 +115,4 @@
         <!--===================================================-->
         <!--End page content-->
     </div>
-
-
 @endsection

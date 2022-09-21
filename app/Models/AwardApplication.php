@@ -25,4 +25,9 @@ class AwardApplication extends Model
     public function award() {
         return $this->belongsTo(Award::class);
     }
+
+    public function categories() {
+        return $this->hasMany(ApplicationCategory::class, 'award_application_id');
+    }
+
 }

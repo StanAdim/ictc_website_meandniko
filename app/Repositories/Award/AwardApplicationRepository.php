@@ -65,7 +65,7 @@ class AwardApplicationRepository extends BaseRepository
 
 
 
-                return $this->query()->create([
+                $application = $this->query()->create([
                     'award_id' => $award->id,
                     'startup_name' => $request->startup_name,
                     'founder_names' => $request->founder_names,
@@ -84,6 +84,7 @@ class AwardApplicationRepository extends BaseRepository
                     'growth_plan' => $request->growth_plan,
                     'award_recognition' => $request->award_recognition,
                     'why_your_startup' => $request->why_your_startup,
+                    'pitchdeck_youtube_link' => $request->pitchdeck_youtube_link,
 
                     'list_of_social_media' => $request->list_of_social_media,
                     'online_resources' => $request->online_resources ?? null,
@@ -98,6 +99,14 @@ class AwardApplicationRepository extends BaseRepository
                     'startup_pitch_deck' => $startup_pitch_deck_filename,
 
                 ]);
+
+                foreach ($request->category as $cat) {
+                    $application->categories()->create([
+                        'award_category_id' => $cat,
+                    ]);
+                }
+
+                return $application;
             }
         });
     }

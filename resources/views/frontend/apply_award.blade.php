@@ -54,6 +54,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group py-2 {{ $errors->has('category') ? ' has-error' : '' }}">
+                        {{Form::label('category', 'Select Award Categories(s) (*)',['class'=>'col-sm-12 control-label pb-2'])}}
+                        <div class="col-sm-12">
+                            {{Form::select('category[]',$categories, null,['class'=>'form-control select2','required'=>'required'])}}
+                            @if ($errors->has('category'))
+                                <span class="help-block">
+                                    <b>{{ $errors->first('category') }}</b>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="form-group py-2 {{ $errors->has('founder_names') ? ' has-error' : '' }}">
                         {{Form::label('founder_names', 'Founder / Co-founders (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
@@ -372,7 +384,24 @@
     </section>
 @endsection
 @push('after-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(".select2").select2({
+            dropdownAutoWidth: true,
+            multiple: true,
+            theme: "bootstrap",
+            placeholder: "Select Award Categories",
+            allowClear: true
+        }).val([]).trigger('change.select2');
+    </script>
 @endpush
 
 @push('after-styles')
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <style type="text/css">
+        .select2-container--default .select2-selection--multiple {
+            padding-bottom: 38px;
+        }
+    </style>
 @endpush
