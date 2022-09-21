@@ -287,6 +287,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group py-2 {{ $errors->has('pitchdeck_youtube_link') ? ' has-error' : '' }}">
+                        {{Form::label('pitchdeck_youtube_link', "Startup's pitch (video or animation of  2-3 minutes) Youtube link (*)",['class'=>'col-sm-12 control-label pb-2'])}}
+                        <div class="col-sm-12">
+                            {{Form::text('pitchdeck_youtube_link', null,['class'=>'form-control','placeholder'=>''])}}
+                            @if ($errors->has('pitchdeck_youtube_link'))
+                                <span class="help-block">
+                                    <b>{{ $errors->first('pitchdeck_youtube_link') }}</b>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <h5 class="text-capitalize">SOCIAL MEDIA AND LINKS</h5>
 
                     <div class="form-group py-2 {{ $errors->has('list_of_social_media') ? ' has-error' : '' }}">
@@ -312,6 +324,7 @@
                             @endif
                         </div>
                     </div>
+
 
                     <h5 class="text-capitalize">CONTACT PERSON</h5>
 
