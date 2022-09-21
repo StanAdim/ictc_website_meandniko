@@ -206,7 +206,7 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('award_venue') ? ' has-error' : '' }}">
-                                        {{Form::label('award_venue', 'Contact Name',['class'=>'col-sm-3 control-label'])}}
+                                        {{Form::label('award_venue', 'Award Venue',['class'=>'col-sm-3 control-label'])}}
                                         <div class="col-sm-9">
                                             {{Form::text('award_venue', $award->award_venue,['class'=>'form-control','placeholder'=>'Enter Award Venue'])}}
                                             @if ($errors->has('award_venue'))

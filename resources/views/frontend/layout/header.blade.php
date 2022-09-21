@@ -12,7 +12,7 @@
                 <div class="col-md-8 col-sm-8 col-xs-8 col-8 text-center pt-3 pt-xs-0 my-auto">
                     <h3 class="mb-2 title title-main">THE UNITED REPUBLIC OF TANZANIA</h3>
                     <h6 class="title-desc">
-                        <strong>INFORMATION AND COMMUNICATION TECHNOLOGY COMMISSION</strong>
+                        <strong>INFORMATION AND COMMUNICATION TECHNOLOGIES COMMISSION</strong>
                     </h6>
                 </div>
 
@@ -70,6 +70,9 @@
                                         </li>
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-research')}}">ICT RESEARCH</a>
+                                        </li>
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'fab-lab')}}">FAB LAB</a>
                                         </li>
                                     </ul>
                                 </li>

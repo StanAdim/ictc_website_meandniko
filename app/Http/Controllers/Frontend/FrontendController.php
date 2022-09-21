@@ -97,6 +97,14 @@ class FrontendController extends Controller
         abort(404);
     }
 
+    public function singleLeader($id) {
+        $leader = Leader::find($id);
+        if ($leader) {
+            return view('frontend.profile',compact('leader'));
+        }
+        abort(404);
+    }
+
     public function applyAward($slug) {
         $award = Award::where('slug', $slug)->first();
         $categories = $award->categories()->pluck('title','id');
