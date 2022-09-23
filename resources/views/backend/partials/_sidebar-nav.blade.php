@@ -119,6 +119,16 @@
                                 </a>
                             </li>
 
+                            {{--<!--Menu list item-->--}}
+                            {{--<li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.general.index'])}}">--}}
+                                {{--<a href="{{ route('backend.general.index') }}">--}}
+                                    {{--<i class="glyphicon glyphicon-tasks"></i>--}}
+                                    {{--<span class="menu-title">--}}
+                                        {{--<strong>General Configuration</strong>--}}
+                                    {{--</span>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
+
                         </ul>
                     @endif
                 </div>

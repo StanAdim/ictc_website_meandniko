@@ -9,7 +9,9 @@ class AddPitchdeckYoutubeLinkInAwardApplicationTable extends Migration
     public function up()
     {
         Schema::table('award_applications', function (Blueprint $table) {
-            $table->string('pitchdeck_youtube_link');
+            if (!Schema::hasColumn('award_applications', 'pitchdeck_youtube_link')) {
+                $table->string('pitchdeck_youtube_link');
+            }
         });
     }
 }

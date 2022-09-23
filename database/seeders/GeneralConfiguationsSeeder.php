@@ -23,6 +23,9 @@ class GeneralConfiguationsSeeder extends Seeder
 
         $general = new General;
         $general->map_key = "AIzaSyBSIU9-xcjVfPpfir98qg0bC5HhyEAsed4";
+
+        $general->recaptcha_key = "6Lfr6yIiAAAAAHB0bBeJFQD8YSvdRyxy840SgcRr";
+        $general->google_recaptcha_secret = "6Lfr6yIiAAAAAKz_SEj4xnELTVYeRPb0A_miV2W5";
         $general->save();
 
         $this->enableForeignKeys("general_configurations");

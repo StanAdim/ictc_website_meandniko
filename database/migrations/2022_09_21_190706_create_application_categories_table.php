@@ -13,7 +13,6 @@ class CreateApplicationCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('application_categories');
         Schema::create('application_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('award_application_id');
