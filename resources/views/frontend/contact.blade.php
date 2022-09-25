@@ -11,7 +11,8 @@
                     <div class="layout-bordered-item-inner wow slideInUp">
                         <div class="icon icon-lg mdi mdi-phone text-primary"></div>
                         <ul class="list-0">
-                            <li><a class="link-default" href="tel:+255 7368 48444">
+                            <li>
+                                <a class="link-default" href="tel:+255 7368 48444">
                                     +255 7368 48444
                                 </a>
                             </li>
@@ -49,8 +50,8 @@
                             {!! RecaptchaV3::field('contact') !!}
                             @if ($errors->has('g-recaptcha-response'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
+                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
                             @endif
 
                             {{--<input type="hidden" name="recaptcha" id="recaptcha">--}}
@@ -120,16 +121,4 @@
 @endsection
 @push('after-styles')
     {!! RecaptchaV3::initJs() !!}
-@endpush
-@push('after-scripts')
-    {{--<script src="https://www.google.com/recaptcha/api.js?render={{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}"></script>--}}
-    {{--<script>--}}
-    {{--grecaptcha.ready(function() {--}}
-    {{--grecaptcha.execute('{{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}', {action: 'contact'}).then(function(token) {--}}
-    {{--if (token) {--}}
-    {{--document.getElementById('recaptcha').value = token;--}}
-    {{--}--}}
-    {{--});--}}
-    {{--});--}}
-    {{--</script>--}}
 @endpush

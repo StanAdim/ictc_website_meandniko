@@ -45,9 +45,7 @@ class GeneralController extends Controller
         ]);
 
         $general = General::first();
-        if ($general) {
-
-        } else {
+        if (!$general) {
             $general = new General();
         }
         $general->map_key = $request->map_key ?? null;

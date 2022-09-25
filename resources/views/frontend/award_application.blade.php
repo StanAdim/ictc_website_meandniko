@@ -41,6 +41,8 @@
                 <div class="offset-md-2 col-md-8">
                     @include('backend.partials._alert');
                     {!! Form::model($application, ['route' => ['frontend.application.update', $application->uid], 'class'=>'form-horizontal', 'method'=>'PUT', 'autocomplete'=>'off', 'files' => true]) !!}
+
+
                     <h5 class="text-capitalize">PRIMARY CONTACT INFORMATION</h5>
                     <div class="form-group py-2 {{ $errors->has('startup_name') ? ' has-error' : '' }}">
                         {{Form::label('startup_name', 'Startup Name (*)',['class'=>'col-sm-12 control-label pb-2'])}}
@@ -404,6 +406,12 @@
                             @endif
                         </div>
                     </div>
+                    {!! RecaptchaV3::field('award_application_update') !!}
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                        </span>
+                    @endif
 
                     <button class="btn btn-primary btn-block" type="submit">Update Application</button>
                     {!! Form::close() !!}
@@ -428,9 +436,11 @@
 @endpush
 
 @push('after-styles')
+    {!! RecaptchaV3::initJs() !!}
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <style type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
         .select2-container--default .select2-selection--multiple {
             padding-bottom: 38px;
         }
