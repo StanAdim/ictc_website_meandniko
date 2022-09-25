@@ -54,6 +54,10 @@ class GeneralController extends Controller
         $general->recaptcha_key = $request->recaptcha_key ?? null;
         $general->google_recaptcha_secret = $request->google_recaptcha_secret ?? null;
         $general->save();
+
+        config(['recaptchav3.sitekey' => $general->recaptcha_key]);
+        config(['recaptchav3.secret' => $general->google_recaptcha_secret]);
+
         Session::flash('success','General configuration has been updated Successfully');
         return redirect()->back();
     }

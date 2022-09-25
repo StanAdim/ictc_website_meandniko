@@ -210,42 +210,43 @@ class FrontendController extends Controller
                 'first_name'=>'required|min:3',
                 'last_name'=>'required|string|min:3',
                 'email'=>'required|email',
-                'message'=>'required'
+                'message'=>'required',
+                'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
             ]
         );
-
-        $general = General::first();
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $remote_ip = $_SERVER['REMOTE_ADDR'];
-        $data = [
-            'secret' => $general->google_recaptcha_secret,
-            'response' => $request->get('recaptcha'),
-            'remoteip' => $remote_ip
-        ];
-        $options = [
-            'http' => [
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method' => 'POST',
-                'content' => http_build_query($data)
-            ]
-        ];
-
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        $resultJson = json_decode($result);
-dd($resultJson);
-        if ($resultJson->success != true) {
-            Session::flash('failed','ReCaptcha Error');
-            return back();
-        }
-        if ($resultJson->score >= 0.3) {
+//
+//        $general = General::first();
+//        $url = 'https://www.google.com/recaptcha/api/siteverify';
+//        $remote_ip = $_SERVER['REMOTE_ADDR'];
+//        $data = [
+//            'secret' => $general->google_recaptcha_secret,
+//            'response' => $request->get('recaptcha'),
+//            'remoteip' => $remote_ip
+//        ];
+//        $options = [
+//            'http' => [
+//                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+//                'method' => 'POST',
+//                'content' => http_build_query($data)
+//            ]
+//        ];
+//
+//        $context = stream_context_create($options);
+//        $result = file_get_contents($url, false, $context);
+//        $resultJson = json_decode($result);
+//dd($resultJson);
+//        if ($resultJson->success != true) {
+//            Session::flash('failed','ReCaptcha Error');
+//            return back();
+//        }
+//        if ($resultJson->score >= 0.3) {
             (new ContactRepository())->store($request);
             Session::flash('success','Your Message has been sent successfully. Thank you for getting in touch!');
             return redirect()->route('frontend.contact');
-        } else {
-            Session::flash('failed','ReCaptcha Error');
-            return back()->withErrors(['captcha' => 'ReCaptcha Error']);
-        }
+//        } else {
+//            Session::flash('failed','ReCaptcha Error');
+//            return back()->withErrors(['captcha' => 'ReCaptcha Error']);
+//        }
     }
 
 

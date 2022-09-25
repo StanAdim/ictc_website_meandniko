@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'general_model' => \App\Models\General::class,
     /*
     |--------------------------------------------------------------------------
     | Application Environment

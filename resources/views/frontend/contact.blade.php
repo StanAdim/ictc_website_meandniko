@@ -46,7 +46,14 @@
                             @include('frontend.includes._alert')
                             {!! Form::open(['route' => 'frontend.contact.store', 'class'=>'rd-form rd-mailform','data-form-output'=>'form-output-global', 'data-form-type'=>'contact', 'autocomplete'=>'off', 'validate' => true]) !!}
 
-                            <input type="hidden" name="recaptcha" id="recaptcha">
+                            {!! RecaptchaV3::field('contact') !!}
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                            @endif
+
+                            {{--<input type="hidden" name="recaptcha" id="recaptcha">--}}
                             <div class="row row-10">
                                 <div class="col-md-6 wow-outer">
                                     <div class="form-wrap wow fadeSlideInUp">
@@ -111,15 +118,18 @@
         </div>
     </section>
 @endsection
+@push('after-styles')
+    {!! RecaptchaV3::initJs() !!}
+@endpush
 @push('after-scripts')
-    <script src="https://www.google.com/recaptcha/api.js?render={{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}"></script>
-    <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('{{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}', {action: 'contact'}).then(function(token) {
-                if (token) {
-                    document.getElementById('recaptcha').value = token;
-                }
-            });
-        });
-    </script>
+    {{--<script src="https://www.google.com/recaptcha/api.js?render={{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}"></script>--}}
+    {{--<script>--}}
+    {{--grecaptcha.ready(function() {--}}
+    {{--grecaptcha.execute('{{($general && $general->recaptcha_key) ? $general->recaptcha_key : 'no-key'}}', {action: 'contact'}).then(function(token) {--}}
+    {{--if (token) {--}}
+    {{--document.getElementById('recaptcha').value = token;--}}
+    {{--}--}}
+    {{--});--}}
+    {{--});--}}
+    {{--</script>--}}
 @endpush
