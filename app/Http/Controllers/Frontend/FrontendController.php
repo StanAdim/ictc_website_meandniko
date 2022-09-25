@@ -153,7 +153,7 @@ class FrontendController extends Controller
                 'tax_registration_document_file'=>'mimes:pdf',
                 'startup_logo'=>'mimes:jpeg,bmp,png',
                 'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
-                'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
+                'g-recaptcha-response' => 'required|recaptchav3:award_application,0.5'
             ]
         );
 
@@ -191,7 +191,7 @@ class FrontendController extends Controller
                 'tax_registration_document_file'=>'mimes:pdf',
                 'startup_logo'=>'mimes:jpeg,bmp,png',
                 'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
-                'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
+                'g-recaptcha-response' => 'required|recaptchav3:award_application_update,0.5'
             ]
         );
 
