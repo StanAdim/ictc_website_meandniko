@@ -375,7 +375,7 @@
                             @endif
                         </div>
                     </div>
-                    {!! RecaptchaV3::field('award-application') !!}
+                    {!! RecaptchaV3::field('award_application') !!}
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="help-block">
                             <b>Robot detected</b>
