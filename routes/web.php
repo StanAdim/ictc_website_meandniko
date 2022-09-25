@@ -69,5 +69,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::delete('award/categories/{id}/destroy', 'AwardCategoryController@destroy')->name('award.category.destroy');
 
     Route::get('general', 'GeneralController@index')->name('general.index');
+    Route::post('general/store', 'GeneralController@store')->name('general.store');
 
 });
