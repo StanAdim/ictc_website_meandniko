@@ -375,10 +375,10 @@
                             @endif
                         </div>
                     </div>
-                    {!! RecaptchaV3::field('award_application') !!}
+                    {!! RecaptchaV3::field('award-application') !!}
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                            <b>Robot detected</b>
                         </span>
                     @endif
                     <button class="btn btn-primary btn-block" type="submit">Send Application</button>
