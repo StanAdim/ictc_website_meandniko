@@ -26,7 +26,6 @@ Route::get('logout', function () {
     request()->session()->invalidate();
     request()->session()->regenerateToken();
     return redirect()->route('frontend.home');
-
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
