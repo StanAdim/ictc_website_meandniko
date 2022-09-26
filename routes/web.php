@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,16 @@ Route::get('debug', function () {
     dd(\App\Models\General::first());
 });
 Auth::routes();
+
+Route::get('logout', function () {
+    Auth::logout();
+    Session::flush();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('frontend.home');
+
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.','middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index')->name('home');
 //    Route::get('about', 'FrontendController@about')->name('about');
@@ -40,12 +51,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('{slug}', 'FrontendController@viewPage')->name('page');
 });
 
-
-Route::get('logout', function () {
-    Auth::logout();
-    return redirect()->route('frontend.home');
-
-});
 
 Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth']], function () {
     Route::get('file-manager/tinymce5', function () {

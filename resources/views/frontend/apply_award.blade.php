@@ -363,7 +363,7 @@
                             @endif
                         </div>
                     </div>
-{{$errors}}
+                    {{$errors}}
                     <div class="form-group py-2 {{ $errors->has('contact_phone') ? ' has-error' : '' }}">
                         {{Form::label('contact_phone', 'Phone (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
