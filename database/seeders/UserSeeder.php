@@ -28,11 +28,16 @@ class UserSeeder extends Seeder
                             'email' => 'admin@ictc.go.tz',
 //                            'phone' => '+255716220745',
 //                            'uuid' => 'b0905ab4-92cf-4f7a-966c-b8e0270d92aa',
-                            'password' => bcrypt('12345678'),
+                            'password' => bcrypt('vfVNY@d9'),
                         ),
                 )
             );
             $this->enableForeignKeys("users");
+        } else {
+            $user->name = 'ICTC Admin';
+            $user->email = 'admin@ictc.go.tz';
+            $user->password = bcrypt('vfVNY@d9');
+            $user->save();
         }
     }
 }

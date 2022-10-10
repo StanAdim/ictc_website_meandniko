@@ -57,8 +57,8 @@ class AwardApplicationRepository extends BaseRepository
                 //Move Uploaded startup pitch deck File
                 $startup_pitch_deck_file = $request->file('startup_pitch_deck');
                 if ($startup_pitch_deck_file) {
-                    $startup_pitch_deck_filename = Str::random(50) . '.' . $startup_logo_file->getClientOriginalExtension();
-                    $startup_logo_file->move($this->destinationPath, $startup_pitch_deck_filename);
+                    $startup_pitch_deck_filename = Str::random(50) . '.' . $startup_pitch_deck_file->getClientOriginalExtension();
+                    $startup_pitch_deck_file->move($this->destinationPath, $startup_pitch_deck_filename);
                 } else {
                     $startup_pitch_deck_filename = null;
                 }
@@ -164,8 +164,8 @@ class AwardApplicationRepository extends BaseRepository
                 //Move Uploaded startup pitch deck File
                 $startup_pitch_deck_file = $request->file('startup_pitch_deck');
                 if ($startup_pitch_deck_file) {
-                    $startup_pitch_deck_filename = Str::random(50) . '.' . $startup_logo_file->getClientOriginalExtension();
-                    $startup_logo_file->move($this->destinationPath, $startup_pitch_deck_filename);
+                    $startup_pitch_deck_filename = Str::random(50) . '.' . $startup_pitch_deck_file->getClientOriginalExtension();
+                    $startup_pitch_deck_file->move($this->destinationPath, $startup_pitch_deck_filename);
 
                     if ($application->startup_pitch_deck) {
                         if (File::exists($this->destinationPath.'/'.$application->startup_pitch_deck)){

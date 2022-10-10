@@ -144,7 +144,7 @@
                     <div class="form-group py-2 {{ $errors->has('no_of_staff') ? ' has-error' : '' }}">
                         {{Form::label('no_of_staff', 'No. of Staff / Employee (*)',['class'=>'col-sm-12 control-label pb-2'])}}
                         <div class="col-sm-12">
-                            {{Form::text('no_of_staff', null,['class'=>'form-control','required'=>'required','placeholder'=>'Write Number of staff'])}}
+                            {{Form::number('no_of_staff', null,['class'=>'form-control','required'=>'required','placeholder'=>'Write Number of staff'])}}
                             @if ($errors->has('no_of_staff'))
                                 <span class="help-block">
                                     <b>{{ $errors->first('no_of_staff') }}</b>

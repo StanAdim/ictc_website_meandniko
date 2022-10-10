@@ -9,7 +9,9 @@ class AddUidInAwardsTable extends Migration
     public function up()
     {
         Schema::table('awards', function (Blueprint $table) {
-            $table->uuid('uid')->nullable();
+            if (!Schema::hasColumn('awards', 'uid')) {
+                $table->uuid('uid')->nullable();
+            }
         });
     }
 }

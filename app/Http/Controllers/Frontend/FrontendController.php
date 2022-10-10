@@ -7,7 +7,6 @@ use App\Models\Award;
 use App\Models\AwardApplication;
 use App\Models\Banner;
 use App\Models\Event;
-use App\Models\General;
 use App\Models\Investment;
 use App\Models\Leader;
 use App\Models\Page;
@@ -117,8 +116,8 @@ class FrontendController extends Controller
 
     public function awardApplicationShow($uid) {
         $application = AwardApplication::where('uid', $uid)->first();
-        $categories = $application->award->categories()->pluck('title','id');
         if ($application) {
+            $categories = $application->award->categories()->pluck('title','id');
             return view('frontend.award_application',compact('application','categories'));
         }
         abort(404);
@@ -136,7 +135,7 @@ class FrontendController extends Controller
                 'city'=>'required',
                 'startup_description'=>'required',
                 'date_of_incorporation'=>'required',
-                'no_of_staff'=>'required',
+                'no_of_staff'=>'required|integer',
                 'product_service'=>'required',
                 'achievements'=>'required',
                 'major_achievements'=>'required',
@@ -153,12 +152,12 @@ class FrontendController extends Controller
                 'tax_registration_document_file'=>'mimes:pdf',
                 'startup_logo'=>'mimes:jpeg,bmp,png',
                 'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
-                'g-recaptcha-response' => 'required|recaptchav3:award_application,0.5'
+//                'g-recaptcha-response' => 'required|recaptchav3:award_application,0.5'
             ]
         );
 
         $application = (new AwardApplicationRepository())->store($request);
-        Session::flash('success','Your Application has been received successfully. We will get back to you through your contact details');
+        Session::flash('success','Your Application has been received successfully. We will get back to you through your contact details. Feel free to update any content before deadline for this application');
         return redirect()->route('frontend.application.show', $application->uid);
     }
 
@@ -174,7 +173,7 @@ class FrontendController extends Controller
                 'city'=>'required',
                 'startup_description'=>'required',
                 'date_of_incorporation'=>'required',
-                'no_of_staff'=>'required',
+                'no_of_staff'=>'required|integer',
                 'product_service'=>'required',
                 'achievements'=>'required',
                 'major_achievements'=>'required',
@@ -246,59 +245,4 @@ class FrontendController extends Controller
         }
         abort(404);
     }
-
-
-    ///////////////////////////////////////////////////////////////////
-    /////////////////////    DRIVER REGISTRATION //////////////////////
-    ///////////////////////////////////////////////////////////////////
-//    public function driverRegitration() {
-//        $regions = (new RegionRepository())->all();
-//        return view('frontend.driver_register')
-//            ->with('regions', $regions);
-//    }
-//
-//    public function postRegister(DriverRegistrationRequest $request) {
-//        $data = $request->all();
-//
-//        $validator = $request->validateRequest($data,$request->rules());
-//        if ($validator->fails()) {
-//            return response()->json(['errors' => $validator->errors(),'success' => false]);
-//        }
-//
-//        $format_phone_number = phone($data['phone'], $country = ['TZ'], $format = 'E164');
-//
-//        // check if this account exist
-//        $check = $this->user->query()->where('phone', $format_phone_number)->first();
-//
-//        if ($check) {
-//            // check id user has been registered as driver
-//            $is_driver = $check->roles->where('id', 3)->first();
-////            dd($is_driver,$check);
-//
-//            if ($is_driver) {
-//                // return error to user that he has an account
-//                throw new GeneralException(__('Driver Account already Exist'));
-//
-//            } else {
-//                DB::transaction(function () use ($check) {
-//
-//                    $check->roles()->attach(3, ['is_approved' => 0]);
-//                });
-//            }
-//        }
-//        else {
-//            DB::transaction(function () use ($data, $format_phone_number) {
-//                $user = $this->user->registerDriver([
-//                    'first_name' =>  $data['first_name'] ?? null,
-//                    'last_name'  =>  $data['last_name'] ?? null,
-//                    'email'      =>  $data['email'] ?? null,
-//                    'phone'      =>  $format_phone_number,
-//                    'region_id'  =>  $data['region'],
-//                    'password'   =>  isset($data['password']) ? Hash::make($data['password']) : null,
-//                ]);
-//                $user->roles()->attach(3, ['is_approved' => 0]);
-//            });
-//        }
-//        // todo save driver information
-//    }
 }
