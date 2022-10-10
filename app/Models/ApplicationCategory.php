@@ -17,5 +17,9 @@ class ApplicationCategory extends Model
         return $this->belongsTo(AwardApplication::class);
     }
 
+    public function award_category() {
+        return $this->belongsTo(AwardCategory::class);
+    }
+
 
 }

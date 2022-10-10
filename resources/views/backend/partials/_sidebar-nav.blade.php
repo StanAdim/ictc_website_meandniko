@@ -70,7 +70,7 @@
                             </li>
 
                             <!--Menu list item-->
-                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.awards.index','backend.awards.show','backend.awards.create','backend.awards.edit'])}}">
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.awards.index','backend.awards.show','backend.awards.create','backend.awards.edit','backend.award.applications','backend.award.application.show'])}}">
                                 <a href="{{ route('backend.awards.index') }}">
                                     <i class="glyphicon glyphicon-tasks"></i>
                                     <span class="menu-title">

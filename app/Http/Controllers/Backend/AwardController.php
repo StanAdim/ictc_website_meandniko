@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Award;
+use App\Repositories\Award\AwardApplicationRepository;
 use App\Repositories\Award\AwardRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -122,4 +123,72 @@ class AwardController extends Controller
             return redirect()->route('backend.awards.index');
         }
     }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param $uid
+     * @return \Illuminate\Http\Response
+     */
+    public function applications($uid)
+    {
+        $award = (new AwardRepository())->getOneByUid($uid);
+        if ($award) {
+            $applications = $award->applications;
+            return view('backend.awards.applications')
+                ->with('applications', $applications);
+        }
+        Session::flash('failed','Unable to find award application. Please try again');
+        return back();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param $uid
+     * @return \Illuminate\Http\Response
+     */
+    public function showApplication($uid)
+    {
+        $application = (new AwardApplicationRepository())->getOneByUid($uid);
+        if ($application) {
+            return view('backend.awards.application_show')
+                ->with('application', $application);
+        }
+        Session::flash('failed','Unable to find application. Please try again');
+        return back();
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $uid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyApplication($uid)
+    {
+        $application = (new AwardApplicationRepository())->getOneByUid($uid);
+        $award = $application && $application->award ? $application->award : null;
+        try {
+            $deleted = (new AwardApplicationRepository())->destroy($uid);
+            if ($deleted) {
+                Session::flash('success','Award Application is deleted Successfully');
+                return redirect()->route('backend.award.applications', $award->uid);
+            } else {
+                Session::flash('failed','Unable to delete Award Application. Please try again');
+                return redirect()->route('backend.award.applications', $award->uid);
+            }
+        } catch (\Exception $e) {
+            Session::flash('failed','Unable to delete Award Application. Please try again');
+            return redirect()->route('backend.awards.index');
+        }
+
+
+    }
+
+
+
+
 }

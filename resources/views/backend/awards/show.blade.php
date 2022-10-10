@@ -30,9 +30,13 @@
         <div id="page-content">
             <div class="row">
                 <div class="col-md-7">
+
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Award Details</h3>
+                            <h3 class="panel-title pull-left">Award Details</h3>
+                            <div class="btn-group pull-right" style="padding-right: 16px; padding-top: 16px">
+                                <a href="{{route('backend.award.applications', $award->uid)}}" class="btn btn-primary btn-sm">View Application</a>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="row">

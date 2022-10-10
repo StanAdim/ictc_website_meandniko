@@ -66,6 +66,11 @@ class BaseRepository
         return $this->query()->where('uuid', $uuid)->first();
     }
 
+    public function getOneByUid($uid)
+    {
+        return $this->query()->where('uid', $uid)->first();
+    }
+
     /*
      *get get by key and value
      *

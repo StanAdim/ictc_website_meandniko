@@ -213,17 +213,34 @@ class AwardApplicationRepository extends BaseRepository
         });
     }
 
-    public function destroy($id)
+    public function destroy($uid)
     {
-        $award = Award::find($id);
-        if ($award) {
-            if ($award->file_sw) {
-                File::delete($this->destinationPath . '/' . $award->file_sw);
+        $application = AwardApplication::where('uid', $uid)->first();
+        if ($application) {
+            if ($application->company_registration_document_file) {
+                if (File::exists($this->destinationPath.'/'.$application->company_registration_document_file)){
+                    File::delete($this->destinationPath.'/'.$application->company_registration_document_file);
+                }
             }
-            if ($award->file_en) {
-                File::delete($this->destinationPath . '/' . $award->file_en);
+
+            if ($application->tax_registration_document_file) {
+                if (File::exists($this->destinationPath.'/'.$application->tax_registration_document_file)){
+                    File::delete($this->destinationPath.'/'.$application->tax_registration_document_file);
+                }
             }
-            $award->delete();
+
+            if ($application->startup_logo) {
+                if (File::exists($this->destinationPath.'/'.$application->startup_logo)){
+                    File::delete($this->destinationPath.'/'.$application->startup_logo);
+                }
+            }
+
+            if ($application->startup_pitch_deck) {
+                if (File::exists($this->destinationPath.'/'.$application->startup_pitch_deck)){
+                    File::delete($this->destinationPath.'/'.$application->startup_pitch_deck);
+                }
+            }
+            $application->delete();
             return true;
         }
         return false;

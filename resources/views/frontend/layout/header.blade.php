@@ -63,7 +63,8 @@
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-professional')}}">ICT PROFESSIONAL</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'softcentre')}}">SOFTCENTRE</a>
+{{--                                            <a class="rd-dropdown-link" href="{{route('frontend.page', 'softcentre')}}">SOFTCENTRE</a>--}}
+                                            <a class="rd-dropdown-link" href="https://softcenter.ictc.go.tz" target="_blank">SOFTCENTRE</a>
                                         </li>
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'training')}}">TRAINING</a>

@@ -72,6 +72,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::put('award/categories/{id}/update', 'AwardCategoryController@update')->name('award.category.update');
     Route::delete('award/categories/{id}/destroy', 'AwardCategoryController@destroy')->name('award.category.destroy');
 
+    Route::get('award/{uid}/applications', 'AwardController@applications')->name('award.applications');
+    Route::get('award/{uid}/application', 'AwardController@showApplication')->name('award.application.show');
+    Route::delete('award/application/{uid}/destroy', 'AwardController@destroyApplication')->name('award.application.destroy');
+
     Route::get('general', 'GeneralController@index')->name('general.index');
     Route::post('general/store', 'GeneralController@store')->name('general.store');
 

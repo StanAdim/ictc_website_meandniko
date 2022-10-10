@@ -30,4 +30,18 @@ class AwardApplication extends Model
         return $this->hasMany(ApplicationCategory::class, 'award_application_id');
     }
 
+    public function getCategoryAppliedAttribute() {
+            $categories = $this->categories;
+            $name = '';
+            foreach ($categories as $key => $category) {
+                if ($key == count($categories)-1) {
+                    $name .= $category->award_category->title;
+                } else {
+                    $name .= $category->award_category->title;
+                    $name .= ', ';
+                }
+            }
+        return $name;
+    }
+
 }
