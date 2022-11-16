@@ -32,12 +32,20 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Database\\": "database/"
-        }
+        },
+        "classmap": [
+            "database/seeders/RegionsTableSeeder.php",
+            "database/seeders/RegistrationCategoriesSeeder.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "classmap": [
+            "database/seeders/RegionsTableSeeder.php",
+            "database/seeders/RegistrationCategoriesSeeder.php"
+        ]
     },
     "files": [
         "app/Helper/Helper.php"

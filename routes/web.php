@@ -18,6 +18,24 @@ use Illuminate\Support\Facades\Session;
 Route::get('debug', function () {
     dd(\App\Models\General::first());
 });
+Route::get('install-migrate', function() {
+    Artisan::queue('migrate');
+});
+
+Route::get('config-clear', function() {
+    Artisan::queue('config:clear');
+});
+
+Route::get('dump-autoload', function() {
+    Artisan::queue('dump-autoload');
+});
+
+Route::get('install-seed', function () {
+    Artisan::call('db:seed', [
+        '--class' => \Database\Seeders\DatabaseSeeder::class
+    ]);
+});
+
 Auth::routes();
 
 Route::get('logout', function () {
@@ -36,6 +54,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('events', 'FrontendController@events')->name('events');
     Route::get('events/{slug}', 'FrontendController@singleEvent')->name('events.single');
     Route::get('awards', 'FrontendController@awards')->name('awards');
+    Route::get('registrations', 'FrontendController@registrations')->name('registrations');
+    Route::get('registrations/register', 'FrontendController@register')->name('registration.register');
+    Route::post('registrations/register/store', 'FrontendController@registrationStore')->name('registration.register.store');
+    Route::get('registrations/additional-field', 'FrontendController@additionalField')->name('registration.additional_field');
     Route::get('awards/{slug}', 'FrontendController@singleAward')->name('awards.single');
     Route::get('leader/{id}', 'FrontendController@singleLeader')->name('leaders.single');
     Route::get('awards/{slug}/apply', 'FrontendController@applyAward')->name('award.apply');
@@ -62,6 +84,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::resource('sections','SectionController');
     Route::resource('posts','PostController');
     Route::resource('events','EventController');
+    Route::resource('registration','RegistrationController');
     Route::resource('awards','AwardController');
     Route::resource('investments','InvestmentController');
     Route::resource('pages','PageController');

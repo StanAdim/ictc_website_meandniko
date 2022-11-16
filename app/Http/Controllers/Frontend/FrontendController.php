@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Award;
 use App\Models\AwardApplication;
 use App\Models\Banner;
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\Investment;
 use App\Models\Leader;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Region;
 use App\Repositories\Award\AwardApplicationRepository;
 use App\Repositories\Contact\ContactRepository;
+use App\Repositories\Registration\RegistrationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -89,6 +92,60 @@ class FrontendController extends Controller
 //                ->with('user', $user);
     }
 
+
+    public function registrations()
+    {
+        return view('frontend.registrations');
+    }
+
+    public function additionalField()
+    {
+        return view('frontend.registration_additional_fields');
+    }
+
+    public function register()
+    {
+        $categories = Category::all()->pluck('name','id');
+        $regions = Region::all()->pluck('name','id');
+        $registration_conditions = collect([
+            0 => 'Not Registered',
+            1 => 'Registered'
+        ]);
+        return view('frontend.registrations_form', compact('categories', 'regions', 'registration_conditions'))
+            ;
+    }
+
+    public function registrationStore(Request $request) {
+        $this->validate(
+            $request,
+            [
+                'entity_name'=>'required',
+                'entity_address'=>'required',
+                'region'=>'required',
+                'category'  => 'required|array|min:1',
+                'phone'=>'required',
+                'email'=>'required|email',
+                'description'=>'required',
+
+                'contact_name'=>'required|min:10',
+                'contact_email'=>'required|email',
+                'contact_phone'=>'required',
+                'list_of_social_media'=>'required',
+
+                'is_registered'=>'required',
+
+                'company_registration_document_file'=>'mimes:pdf',
+                'tax_registration_document_file'=>'mimes:pdf',
+                'startup_logo'=>'mimes:jpeg,bmp,png',
+//                'g-recaptcha-response' => 'required|recaptchav3:award_application,0.5'
+            ]
+        );
+        (new RegistrationRepository())->store($request);
+        Session::flash('success','Your Entity has been registered successfully.');
+        return redirect()->route('frontend.registrations');
+    }
+
+
     public function singleAward($slug) {
         $award = Award::where('slug', $slug)->first();
         if ($award) {
@@ -136,7 +193,7 @@ class FrontendController extends Controller
                 'startup_description'=>'required',
                 'date_of_incorporation'=>'required',
                 'no_of_staff'=>'required|integer',
-                'product_service'=>'required',
+                'product_service'=>'required|min:1|max:190',
                 'achievements'=>'required',
                 'major_achievements'=>'required',
                 'impact_of_startup'=>'required',
@@ -150,7 +207,7 @@ class FrontendController extends Controller
                 'contact_phone'=>'required',
                 'company_registration_document_file'=>'mimes:pdf',
                 'tax_registration_document_file'=>'mimes:pdf',
-                'startup_logo'=>'mimes:jpeg,bmp,png',
+                'startup_logo'=>'mimes:jpeg,bmp,png,jpg,pdf',
                 'startup_pitch_deck'=>'mimes:pdf,ppt,pptx',
 //                'g-recaptcha-response' => 'required|recaptchav3:award_application,0.5'
             ]
@@ -174,7 +231,7 @@ class FrontendController extends Controller
                 'startup_description'=>'required',
                 'date_of_incorporation'=>'required',
                 'no_of_staff'=>'required|integer',
-                'product_service'=>'required',
+                'product_service'=>'required|min:1|max:190',
                 'achievements'=>'required',
                 'major_achievements'=>'required',
                 'impact_of_startup'=>'required',

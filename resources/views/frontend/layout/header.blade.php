@@ -93,7 +93,10 @@
                                             <a class="rd-dropdown-link" href="{{route('frontend.events')}}">EVENTS</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="{{route('frontend.awards')}}">STARTUP AWARDS</a>
+                                            <a class="rd-dropdown-link" href="{{route('frontend.awards')}}">AWARDS</a>
+                                        </li>
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('frontend.registrations')}}">REGISTRATION</a>
                                         </li>
                                         {{--<li class="rd-dropdown-item">--}}
                                             {{--<a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>--}}
