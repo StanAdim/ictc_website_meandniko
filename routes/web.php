@@ -1,17 +1,53 @@
 <?php
 
+use App\Http\Controllers\InnovationProjectController;
+use App\Http\Controllers\InnovProjectHandlerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Adim section 
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+*/
+// NATIONAL PROJECTS ROUTES
+Route::get('/national-innovation-projects',[InnovProjectHandlerController::class,'index'])->name('innovationProject');
+Route::get('/national-innovation-project-create',[InnovProjectHandlerController::class,'projectCreatorForm'])->name('ProjectRegisterForm');
+Route::get('/national-innovation-created/{creatorEmail}',[InnovProjectHandlerController::class,'showCreatedProject'])->name('registerProject');
+
+Route::post('/project-creator-store',[InnovProjectHandlerController::class,'projectCreatorStore'])->name('projectCreator.store');
+Route::post('/project-store',[InnovProjectHandlerController::class,'projectStore'])->name('project.store');
+Route::post('/project-supervisor-store',[InnovProjectHandlerController::class,'projectSupervisorStore'])->name('projectSupervisor.store');
+
+//Auth route of project
+Route::get('/dashboard/projects',[InnovationProjectController::class,'index'])->name('backend.projects.index');
+Route::get('/dashboard/projects/creators',[InnovationProjectController::class,'creatorsList'])->name('backend.projects.creators');
+Route::get('/dashboard/projects/supervisors',[InnovationProjectController::class,'supervisorsList'])->name('backend.projects.supervisors');
+
+
+
+// END PROJECTS
+// NATIONAL ENTITIES ROUTES
+Route::get('/national-entities', function(){
+
+    return view('frontend.entities_projects.nationalEntities');
+    
+});
+// END PROJECTS
+
+/*
+|--------------------------------------------------------------------------
+| End
+|--------------------------------------------------------------------------
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| WaveSleek section 
+|--------------------------------------------------------------------------
 |
 */
 
@@ -54,10 +90,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('events', 'FrontendController@events')->name('events');
     Route::get('events/{slug}', 'FrontendController@singleEvent')->name('events.single');
     Route::get('awards', 'FrontendController@awards')->name('awards');
+
+    // STARTUP REGISTRATION
+
     Route::get('registrations', 'FrontendController@registrations')->name('registrations');
     Route::get('registrations/register', 'FrontendController@register')->name('registration.register');
     Route::post('registrations/register/store', 'FrontendController@registrationStore')->name('registration.register.store');
     Route::get('registrations/additional-field', 'FrontendController@additionalField')->name('registration.additional_field');
+
+
     Route::get('awards/{slug}', 'FrontendController@singleAward')->name('awards.single');
     Route::get('leader/{id}', 'FrontendController@singleLeader')->name('leaders.single');
     Route::get('awards/{slug}/apply', 'FrontendController@applyAward')->name('award.apply');
@@ -103,3 +144,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::post('general/store', 'GeneralController@store')->name('general.store');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+|End section 
+|--------------------------------------------------------------------------
+|
+*/

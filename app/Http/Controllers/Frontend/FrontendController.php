@@ -141,8 +141,8 @@ class FrontendController extends Controller
             ]
         );
         (new RegistrationRepository())->store($request);
-        Session::flash('success','Your Entity has been registered successfully.');
-        return redirect()->route('frontend.registrations');
+        Session::flash('status','Your Entity has been registered successfully.');
+        return redirect()->route('innovationProject');
     }
 
 

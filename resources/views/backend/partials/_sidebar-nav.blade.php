@@ -18,6 +18,8 @@
                                 </a>
                             </li>
 
+
+
                             <!--Menu list item-->
                             <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.banners.index','backend.banners.show','backend.banners.create','backend.banners.edit'])}}">
                                 <a href="{{ route('backend.banners.index') }}">
@@ -88,6 +90,19 @@
                                     </span>
                                 </a>
                             </li>
+
+                            
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.projects.index','backend.projects.showProject'])}}">
+                                <a href="{{ route('backend.projects.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Projects</strong>
+                                    </span>
+                                </a>
+                            </li>
+
+                            
 
                             <!--Menu list item-->
                             <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.pages.index','backend.pages.show','backend.pages.create','backend.pages.edit'])}}">

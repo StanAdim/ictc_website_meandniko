@@ -71,9 +71,17 @@
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="https://taic.ictc.go.tz/" target="_blank">TAIC</a>
                                         </li>
+                                        
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'training')}}">TRAINING</a>
                                         </li>
+
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('innovationProject')}}">ICT STARTUP|PROJECT</a>
+                                        </li>
+
+
+
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-research')}}">ICT RESEARCH</a>
                                         </li>

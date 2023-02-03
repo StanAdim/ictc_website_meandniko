@@ -10,7 +10,8 @@
         var base_url = "{!! url("/") !!}";
     </script>
 </head>
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <body>
 <div id="container" class="effect aside-float aside-bright mainnav-lg">
     <!--NAVBAR-->
