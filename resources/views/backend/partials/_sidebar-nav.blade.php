@@ -100,7 +100,18 @@
                                         <strong>Projects</strong>
                                     </span>
                                 </a>
+                            </li>  
+                            <!--Menu list item-->
+                            <li class="{{\App\Helpers\ManageRoute::areActiveRoutes(['backend.entities.index','backend.entities.showProject'])}}">
+                                <a href="{{ route('backend.entities.index') }}">
+                                    <i class="glyphicon glyphicon-tasks"></i>
+                                    <span class="menu-title">
+                                        <strong>Registered Startups</strong>
+                                    </span>
+                                </a>
                             </li>
+
+
 
                             
 

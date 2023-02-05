@@ -23,7 +23,9 @@
                         <ul class="list-group list-group-flush text-dark">
                             <li class="list-group-item"> Contacts: {{$ownerDetails->phoneNumber}} {{$ownerDetails->email}}</li>
                             <li class="list-group-item"> Date of Birth: 
-                                <span class="text-primary"></span>
+                                <span class="text-primary">
+                                    {{date('d-m-Y',strtotime($ownerDetails->dob))}}
+                                </span>
                             </li>
                             <li class="list-group-item"> Gender: {{$ownerDetails->gender}}</li>
                             <li class="list-group-item"> Region: {{$ownerDetails->region}}</li>

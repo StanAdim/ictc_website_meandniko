@@ -92,9 +92,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('awards', 'FrontendController@awards')->name('awards');
 
     // STARTUP REGISTRATION
+//  ----------------------------------------ADMIN
+
 
     Route::get('registrations', 'FrontendController@registrations')->name('registrations');
-    Route::get('registrations/register', 'FrontendController@register')->name('registration.register');
+        Route::get('registrations/register', 'FrontendController@register')->name('registration.register');
     Route::post('registrations/register/store', 'FrontendController@registrationStore')->name('registration.register.store');
     Route::get('registrations/additional-field', 'FrontendController@additionalField')->name('registration.additional_field');
 
@@ -118,6 +120,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'backen
     Route::get('file-manager/tinymce5', function () {
        return view('vendor.file-manager.tinymce5');
     });
+// ENTIES / START UP REGISTERED
+Route::get('registered-entities', 'EntityRegisteringController@index')->name('entities.index');
+Route::get('registered-entity/show/{id}', 'EntityRegisteringController@show')->name('entities.show');
+
 
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('banners','BannerController');
