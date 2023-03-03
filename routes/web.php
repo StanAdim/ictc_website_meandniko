@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Session;
 |
 */
 // NATIONAL PROJECTS ROUTES
-Route::get('/national-innovation-projects',[InnovProjectHandlerController::class,'index'])->name('innovationProject');
+Route::get('/national-innovation-projects',[InnovProjectHandlerController::class,'indexProject'])->name('innovationProject');
+Route::get('/national-innovation-startups',[InnovProjectHandlerController::class,'indexStartup'])->name('innovationStartup');
+
 Route::get('/national-innovation-project-create',[InnovProjectHandlerController::class,'projectCreatorForm'])->name('ProjectRegisterForm');
 Route::get('/national-innovation-created/{creatorEmail}',[InnovProjectHandlerController::class,'showCreatedProject'])->name('registerProject');
 
@@ -26,15 +28,14 @@ Route::get('/dashboard/projects',[InnovationProjectController::class,'index'])->
 Route::get('/dashboard/projects/creators',[InnovationProjectController::class,'creatorsList'])->name('backend.projects.creators');
 Route::get('/dashboard/projects/supervisors',[InnovationProjectController::class,'supervisorsList'])->name('backend.projects.supervisors');
 
+Route::get('/get/districts/{regionId}',[InnovProjectHandlerController::class,'districtRequest']);
 
+Route::get('/registrations/Entities/get/districts/{regionId}',[InnovProjectHandlerController::class,'entitiesDistrictRequest']);
 
 // END PROJECTS
-// NATIONAL ENTITIES ROUTES
-Route::get('/national-entities', function(){
-
-    return view('frontend.entities_projects.nationalEntities');
-    
-});
+// NATIONAL ENTITIES AND PROJECTS ROUTES
+Route::get('/registered-national-startups',[InnovProjectHandlerController::class,'nationalEntities'])->name('RegisteredEntities');
+Route::get('/registered-national-innovationa-projects',[InnovProjectHandlerController::class,'InnovationProjects'])->name('innovationProjects');
 // END PROJECTS
 
 /*
@@ -51,26 +52,26 @@ Route::get('/national-entities', function(){
 |
 */
 
-Route::get('debug', function () {
-    dd(\App\Models\General::first());
-});
-Route::get('install-migrate', function() {
-    Artisan::queue('migrate');
-});
+// Route::get('debug', function () {
+//     dd(\App\Models\General::first());
+// });
+// Route::get('install-migrate', function() {
+//     Artisan::queue('migrate');
+// });
 
-Route::get('config-clear', function() {
-    Artisan::queue('config:clear');
-});
+// Route::get('config-clear', function() {
+//     Artisan::queue('config:clear');
+// });
 
-Route::get('dump-autoload', function() {
-    Artisan::queue('dump-autoload');
-});
+// Route::get('dump-autoload', function() {
+//     Artisan::queue('dump-autoload');
+// });
 
-Route::get('install-seed', function () {
-    Artisan::call('db:seed', [
-        '--class' => \Database\Seeders\DatabaseSeeder::class
-    ]);
-});
+// Route::get('install-seed', function () {
+//     Artisan::call('db:seed', [
+//         '--class' => \Database\Seeders\DatabaseSeeder::class
+//     ]);
+// });
 
 Auth::routes();
 

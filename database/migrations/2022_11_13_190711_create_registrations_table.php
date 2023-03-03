@@ -21,6 +21,7 @@ class CreateRegistrationsTable extends Migration
             $table->string('entity_address');
             $table->foreignId('region_id')->constrained()->cascadeOnDelete();
             $table->string('phone');
+            $table->string('district');
             $table->string('email');
             $table->string('website')->nullable();
             $table->text('description');

@@ -95,11 +95,17 @@
 
                             </div>
 
-                            <div class="group group-middle">
-                                <div class="wow-outer">
-                                    <button class="button button-primary button-winona wow fadeSlideInDown" type="submit">Save</button>
+                            <div class="col-12 wow-outer">
+                                    
+                                <div class="alert">
+                                    <p class="text-danger">
+                                    Please Make Sure All the Information provided is accurate, You wont be able to Edit After Saving
+    
+                                    </p>
                                 </div>
+                                <button type="submit" class="btn btn-primary btn-block"  >Save</button>
                             </div>
+                      
                             {!! Form::close() !!}
                           
                             {{-- ========================================================================================== --}}

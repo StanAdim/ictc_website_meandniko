@@ -59,7 +59,7 @@
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 @include('backend.partials._script-section')
 

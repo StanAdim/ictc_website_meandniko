@@ -1,8 +1,8 @@
-@extends('frontend.layout.main', ['title' => 'National ICT Projects', 'header' => 'National ICT Projects'])
+@extends('frontend.layout.main', ['title' => 'National Startups', 'header' => 'National Startups'])
 @section('content')
         <div class="container">
             <div class="row d-flex justify-content-center m-2">
-            <h4 class="h4 text-primary">REGISTERED ICT PROJECTS</h4>
+            <h4 class="h4 text-primary">REGISTERED STARTUPS</h4>
 
                 <div class="col-md-12 ">
                     {{-- MESSAGE PASSED  --}}
@@ -15,41 +15,47 @@
                         <thead>
                           <tr class="text-center">
                             <th scope="col">#</th>
-                            <th scope="col">Title | Year</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Institution</th>
+                            <th scope="col">Entity Title</th>
+                            <th scope="col">Brela Registration</th>
+                            <th scope="col">Contacts</th>
+                            <th scope="col">Location</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($projects as $key => $item)
+                            @foreach ($entities as $key => $item)
                                 <tr>
-                                  <?php
-                                  $count = $key + 1;
-                                   ?>
+                                    <?php
+                                    $count = $key + 1;
+                                     ?>
                                     <th scope="row">{{$count}}</th>
-                                    <th scope="row">{{$item->title}} - <span class="text-primary">{{$item->year}} </span></th>
-                                    <th scope="row">{{$item->category}}</th>
-                                    <th scope="row">
-                                        @foreach($categories as $category)
-                                            @if($category->id == $item->type + 1)
-                                                {{$category->categoryName}}
+                                    <th scope="row">{{$item->entity_name}}</th>
+                                    <th scope="row text-center">
+                                        @if ($item->is_registered)
+                                        <b class="text-success">Done</b>
+                                            @else
+                                        <b class="text-secondary">Unregisted</b>                                          
+                                            
+                                        @endif
+                                    </th>
+                                    <th scope="row">{{$item->phone}} | {{$item->email}}</th>
+                                    <th scope="row"> 
+                                        @foreach ($regions as $region)
+                                            @if($region->id == $item->region_id)
+                                                {{$region->name}}
                                             @endif
                                         @endforeach
-                                    
+                                        - {{$item->district}}
                                     </th>
-                                    <th scope="row">{{$item->institution}}</th>                                   
                                    
                                 </tr>
                             @endforeach
                           
                         </tbody>
                       </table>
-                      
                       <nav aria-label="Page navigation example">
                         <ul class="pagination">
                           <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="?page=2">1</a></li>
                           <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li>
                           <li class="page-item"><a class="page-link" href="#">Next</a></li>

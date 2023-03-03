@@ -58,7 +58,7 @@
                             <th>Year</th>
                             <th>Type</th>
                             <th>Brief</th>
-                            <th>Nomination</th>
+                            <th>Status Product|service</th>
                             <th>Category</th>
                             <th>Institution</th>
                             <th>Created date</th>
@@ -79,9 +79,9 @@
                                 <td>{{$project->brief}}</td>
                                 <td class="text-center">
                                     @if ($project->isNominated === 1)
-                                   <span>Nominated</span>
+                                   <span>Product | service </span>
                                 @elseif ($project->isNominated === 0)
-                                    <span>Regular</span>
+                                    <span>None</span>
                                 @endif
                                 </td>
                                 <td>{{$project->category}}</td>

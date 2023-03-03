@@ -77,10 +77,12 @@
                                         </li>
 
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="{{route('innovationProject')}}">ICT STARTUP|PROJECT</a>
+                                            <a class="rd-dropdown-link" href="{{route('innovationStartup')}}">REGISTER STARTUP</a>
+                                        </li>  
+
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('innovationProject')}}">REGISTER PROJECT</a>
                                         </li>
-
-
 
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-research')}}">ICT RESEARCH</a>
@@ -101,12 +103,18 @@
                                             <a class="rd-dropdown-link" href="{{route('frontend.events')}}">EVENTS</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="{{route('frontend.awards')}}">AWARDS</a>
+                                            <a class="rd-dropdown-link" href="{{route('RegisteredEntities')}}">REGISTERED STARTUPS</a>
                                         </li>
                                         <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('innovationProjects')}}">REGISTERED PROJECTS</a>
+                                        </li>
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="{{route('frontend.awards')}}">AWARDS</a>
+                                        </li>
+                                        {{--<li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="{{route('frontend.registrations')}}">REGISTRATION</a>
                                         </li>
-                                        {{--<li class="rd-dropdown-item">--}}
+                                        <li class="rd-dropdown-item">--}}
                                             {{--<a class="rd-dropdown-link" href="single-event.html">PHOTO GALLERY</a>--}}
                                         {{--</li>--}}
                                         {{--<li class="rd-dropdown-item">--}}

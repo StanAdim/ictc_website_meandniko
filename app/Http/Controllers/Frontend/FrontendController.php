@@ -87,7 +87,7 @@ class FrontendController extends Controller
 
     public function awards()
     {
-        $awards = Award::orderBy('id', 'desc')->paginate(6);
+        $awards = Award::orderBy('id', 'desc')->paginate(10);
         return view('frontend.awards',compact('awards'));
 //                ->with('user', $user);
     }
@@ -108,7 +108,7 @@ class FrontendController extends Controller
         $categories = Category::all()->pluck('name','id');
         $regions = Region::all()->pluck('name','id');
         $registration_conditions = collect([
-            0 => 'Not Registered',
+            0 => 'Unregistered',
             1 => 'Registered'
         ]);
         return view('frontend.registrations_form', compact('categories', 'regions', 'registration_conditions'))
@@ -116,12 +116,14 @@ class FrontendController extends Controller
     }
 
     public function registrationStore(Request $request) {
+        
         $this->validate(
             $request,
             [
                 'entity_name'=>'required',
                 'entity_address'=>'required',
                 'region'=>'required',
+                'district'=>'required',
                 'category'  => 'required|array|min:1',
                 'phone'=>'required',
                 'email'=>'required|email',
@@ -142,7 +144,7 @@ class FrontendController extends Controller
         );
         (new RegistrationRepository())->store($request);
         Session::flash('status','Your Entity has been registered successfully.');
-        return redirect()->route('innovationProject');
+        return redirect()->route('RegisteredEntities');
     }
 
 

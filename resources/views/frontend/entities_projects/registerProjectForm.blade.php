@@ -65,17 +65,7 @@
                                 <div class="col-md-6 wow-outer">
                                     <div class="form-wrap wow fadeSlideInUp">
                                         <label class="form-label-outside text-dark" for="projectType">Project Type</label>
-
-                                        {!! Form::select('type',
-                                         [
-                                            'AgriTec' => 'AgriTec',
-                                            'Education' => 'Education',
-                                            'Healthy' => 'Healthy',
-                                            'Economy' => 'Economy',
-                                            'Cyber Security' => 'Cyber Security',
-                                            'scholar' => 'Scholar'
-                                        ],
-                                         null, ['id' => 'projectType','class'=>'form-input' ,"data-constraints"=>"@projectType"] ) !!}
+                                        {!! Form::select('type', $projectCategories,null,['id'=> 'projectType' ,'class'=>'form-input',"data-constraints"=>"@projectType"]) !!}
                                         
                                     </div>
                                 </div>   
@@ -88,14 +78,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 wow-outer">
-                                    <label class="form-label-outside text-dark" for="gender">Nominationation Status</label>
+                                    <label class="form-label-outside text-dark" for="gender">Turned to Product | service</label>
                                     <div class="form-check">
                                         <div class="row">
                                             <div class="col-1">
                                                 {!! Form::radio('isNominated','1' ,['class'=>'form-check-input m-1','id'=>'flexRadioDefault1',"data-constraints"=>"@Required"]) !!} 
                                             </div>
                                             <div class="col-11">
-                                                <label class="form-check-label text-dark" for="flexRadioDefault1">Nominated</label>
+                                                <label class="form-check-label text-dark" for="flexRadioDefault1">Agree</label>
                                             </div>
                                         </div>
                                     </div>
@@ -105,7 +95,7 @@
                                                 {!! Form::radio('isNominated','0',['class'=>'form-check-input','id'=>'flexRadioDefault2',"data-constraints"=>"@Required"]) !!} 
                                             </div>
                                             <div class="col-11">
-                                                <label class="form-check-label text-dark" for="flexRadioDefault2">Not Nominated</label>
+                                                <label class="form-check-label text-dark" for="flexRadioDefault2">Disagree</label>
                                             </div>
                                         </div>
                                     </div>
@@ -118,16 +108,27 @@
                                         {{ Form::textarea('brief', null,['class'=>'form-input','id'=>'brief',"data-constraints"=>"@Required"])}}
                                     </div>
                                 </div>
+                                <div class="col-12 wow-outer">
+                                    <div class="form-wrap wow fadeSlideInUp">
+                                        <label class="form-label-outside text-dark" for="brief">Highlight the Support you Need From ICT Commission</label>
+                                        {{ Form::textarea('requiredSupport', null,['class'=>'form-input','id'=>'brief',"data-constraints"=>"@Required"])}}
+                                    </div>
+                                </div>
 
                                 <div class="form-wrap wow fadeSlideInUp invisible">
                                     {{ Form::email('creatorEmail',$creatorEmail,['class'=>'form-input invisible','id'=>'creatorEmail'])}}
                                 </div>
-
-                            <div class="group group-middle">
-                                <div class="wow-outer">
-                                    <button class="button button-primary button-winona wow fadeSlideInDown" type="submit">Save</button>
+                                <div class="col-12 wow-outer">
+                                    
+                                    <div class="alert">
+                                        <p class="text-danger">
+                                        Please Make Sure All the Information provided is accurate, You wont be able to Edit After Saving
+        
+                                        </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block"  >Save</button>
                                 </div>
-                            </div>
+                          
                             {!! Form::close() !!}
                           
                             {{-- ========================================================================================== --}}

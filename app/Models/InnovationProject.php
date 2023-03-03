@@ -15,6 +15,7 @@ class InnovationProject extends Model
         'year',
         'type',
         'brief',
+        'requiredSupport',
         'creatorEmail',
         'isNominated',
    

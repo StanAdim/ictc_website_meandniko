@@ -2,31 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\InnovationProject;
+use App\Models\ProjectCategory;
 use App\Models\ProjectOwner;
 use App\Models\ProjectSupervisor;
 use App\Models\Region;
+use App\Models\Registration;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class InnovProjectHandlerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+  
+    public function indexProject()
     {
         //
-        return view('frontend.entities_projects.nationalProjects');
+        return view('frontend.entities_projects.indexProject');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function indexStartup()
+    {
+        //
+        return view('frontend.entities_projects.indexStartup');
+    }
+  
+    public function InnovationProjects()
+    {
+        //
+        $projects = InnovationProject::orderBy('id', 'desc')->get();
+        $regions = Region::all(); 
+        $categories = ProjectCategory::all(); 
+        return view('frontend.entities_projects.nationalProjects',compact('projects','regions','categories'));
+    }
 
+    public function nationalEntities()
+    {
+        //
+        $entities = Registration::orderBy('id', 'desc')->get();
+        $regions = Region::all();    
+        return view('frontend.entities_projects.nationalStartups',compact('entities','regions'));
+    }
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public function projectCreatorForm()
     {
@@ -35,6 +54,33 @@ class InnovProjectHandlerController extends Controller
         return view('frontend.entities_projects.registerProjectCreator',compact('regions'));
     } 
 
+    public function districtRequest($regionId)
+    {
+        $regionId = $regionId + 1;
+        if($regionId <=32){
+             //getting districts for passed region
+        $region = Region::where('id', $regionId)->first();
+        $region = $region['name'];
+        $districts = District::where('region', $region)->get();
+        return response()->json($districts);
+        }
+        else{
+            return '';
+        }
+    } 
+    public function entitiesDistrictRequest($regionId)
+    {
+        if($regionId <=32){
+             //getting districts for passed region
+        $region = Region::where('id', $regionId)->first();
+        $region = $region['name'];
+        $districts = District::where('region', $region)->get();
+        return response()->json($districts);
+        }
+        else{
+            return '';
+        }
+    } 
 
      
     public function projectCreatorStore(Request $request)
@@ -48,6 +94,7 @@ class InnovProjectHandlerController extends Controller
                     'dob' => ['required', 'max:255'],
                     'nationality' => ['required', 'max:255'],
                     'region' => ['required', 'max:255'],
+                    'district' => ['required', 'max:255'],
                     'gender' => ['required', 'max:255'],
         ]);
             //
@@ -57,8 +104,9 @@ class InnovProjectHandlerController extends Controller
         $ProjectCreator = ProjectOwner::create($validatedData);
         $ProjectCreator->save();
             //
+        $projectCategories = ProjectCategory::pluck('categoryName')->toArray();
         $creatorEmail = $validatedData['email']; //passing Email to Project as key for owning the project
-        return view('frontend.entities_projects.registerProjectForm',compact('creatorEmail'));
+        return view('frontend.entities_projects.registerProjectForm',compact('creatorEmail','projectCategories'));
 
         
     }
@@ -75,7 +123,9 @@ class InnovProjectHandlerController extends Controller
                             'year' => ['required','numeric'],
                             'type' => ['required'],
                             'brief' => ['required'],
+                            'requiredSupport' => ['required'],
                             'isNominated' => ['required', 'max:255'],
+
                             'creatorEmail' => ['required'],
                 ]);            //
                 $project = InnovationProject::create($validatedData);
@@ -106,10 +156,11 @@ class InnovProjectHandlerController extends Controller
                 $creatorEmail = $validatedData['creatorEmail'];
                 $ownerDetails = ProjectOwner::where('email',$creatorEmail)->get()->first();
                 $region = $ownerDetails['region'];
+                $categories = ProjectCategory::all(); 
                 $projectDetails = InnovationProject::where('creatorEmail',$creatorEmail)->get()->first();
                 $projectSupervisor = ProjectSupervisor::where('creatorEmail',$creatorEmail)->get()->first();
                 $status = 'Congratulation Your Project is Registered Successful!';
-                return view('frontend.entities_projects.projectOverview',compact('ownerDetails','projectDetails','projectSupervisor', 'status'));
+                return view('frontend.entities_projects.projectOverview',compact('ownerDetails','projectDetails','projectSupervisor', 'status','categories'));
                 
             }
 

@@ -21,6 +21,7 @@ class CreateInnovationProjectsTable extends Migration
             $table->integer('year');
             $table->string('type');
             $table->longText('brief');
+            $table->longText('requiredSupport');
             $table->boolean('isNominated');
             $table->timestamps();
             $table->string('creatorEmail');

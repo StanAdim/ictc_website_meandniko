@@ -14,7 +14,7 @@
 
                     <div class="card m-4">
                         <div class="card-header">
-                            <span class="text-primary">Project Owner</span>
+                            <span class="text-primary">Project Owner</span> 
                             <span class="">
                                 <b class=" text-success">{{$ownerDetails->firstName}} {{$ownerDetails->secondName}} </b>
                             </span>
@@ -29,6 +29,7 @@
                             </li>
                             <li class="list-group-item"> Gender: {{$ownerDetails->gender}}</li>
                             <li class="list-group-item"> Region: {{$ownerDetails->region}}</li>
+                            <li class="list-group-item"> District: {{$ownerDetails->district}}</li>
                             <li class="list-group-item"> Nationality: {{$ownerDetails->nationality}}</li>
                           </ul>                       
 
@@ -40,7 +41,14 @@
                         </div>
                         <ul class="list-group list-group-flush text-dark">
                             <li class="list-group-item"> Title: {{$projectDetails->title}} - {{$projectDetails->year}}</li>
-                            <li class="list-group-item"> Type: {{$projectDetails->type}}</li>
+                            {{-- <li class="list-group-item"> Type: {{$projectDetails->type}}</li> --}}
+                             <li class="list-group-item"> Type:
+                                @foreach($categories as $category)
+                                @if($category->id == $projectDetails->type + 1)
+                                    {{$category->categoryName}}
+                                @endif
+                            @endforeach
+                             </li>
                             <li class="list-group-item"> Institution: {{$projectDetails->institution}}</li>
                             <li class="list-group-item"> Nomination: 
                                 @if( $projectDetails->isNominated === 1)
@@ -50,9 +58,15 @@
                                 @endif
                             </li>
                             <div class="card-header text-center text-primary">
-                                <span class="fs-2"><b>Brief</b></span>
+                                <span class="fs-2"><b>Project Description</b></span>
                             </div>
                             <li class="list-group-item">{{$projectDetails->brief}}</li>
+
+                            <div class="card-header text-center text-primary">
+                                <span class="fs-2"><b>Support Needed</b></span>
+                            </div>
+                            <li class="list-group-item">{{$projectDetails->requiredSupport}}</li>  
+
                           </ul>            
 
                       </div><div class="card m-4">

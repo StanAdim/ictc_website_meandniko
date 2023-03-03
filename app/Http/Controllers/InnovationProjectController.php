@@ -6,6 +6,8 @@ use App\Http\Resources\projects\InnovProjectResource;
 use App\Models\InnovationProject;
 use App\Models\ProjectOwner;
 use App\Models\ProjectSupervisor;
+use App\Models\Region;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 
 class InnovationProjectController extends Controller

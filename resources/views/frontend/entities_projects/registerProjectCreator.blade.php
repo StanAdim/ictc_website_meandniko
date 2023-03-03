@@ -94,11 +94,20 @@
                                 <div class="col-md-6 wow-outer">
                                     <div class="form-wrap wow fadeSlideInUp">
                                         <label class="form-label-outside text-dark" for="region">Region</label>
-                                        {!! Form::select('region', $regions,null,['regions'=> 'regions' ,'class'=>'form-input',"data-constraints"=>"@region"]) !!}
+                                        {!! Form::select('region', $regions,null,['id'=> 'region' ,'class'=>'form-input',"data-constraints"=>"@region"]) !!}
                                         
                                     </div>
                                 </div>
                                     
+
+                                <div class="col-md-6 wow-outer">
+                                    <div class="form-wrap wow fadeSlideInUp">
+                                        <label class="form-label-outside text-dark" for="district">District</label>
+                                        {!! Form::select('district', [],null,['id'=> 'district' ,'class'=>'form-input',"data-constraints"=>"@district"]) !!}
+                                        
+                                    </div>
+                                </div>
+                                 
                                 <div class="col-md-6 wow-outer">
                                     <label class="form-label-outside text-dark" for="nationality">Nationality</label>
                                     <div class="form-check">
@@ -114,7 +123,7 @@
                                     <div class="form-check">
                                         <div class="row">
                                             <div class="col-1">
-                                                {!! Form::radio('nationality','Foreigner',['class'=>'form-check-input','id'=>'flexRadioDefault2',"data-constraints"=>"@gender"]) !!} 
+                                                {!! Form::radio('nationality','Foreigner',['class'=>'form-check-input','id'=>'flexRadioDefault2',"data-constraints"=>"@nationality"]) !!} 
                                             </div>
                                             <div class="col-11">
                                                 <label class="form-check-label text-dark" for="flexRadioDefault2">Foreigner</label>
@@ -126,12 +135,15 @@
                                 </div> 
 
                             </div>
+                            <div class="alert">
+                                <p class="text-danger">
+                                Please Make Sure All the Information provided is accurate, You wont be able to Edit After Saving
 
-                            <div class="group group-middle">
-                                <div class="wow-outer">
-                                    <button class="button button-primary button-winona wow fadeSlideInDown" type="submit">Save</button>
-                                </div>
+                                </p>
                             </div>
+                            <!-- Button trigger modal -->
+                            <button type="submit" class="btn btn-primary btn-block"  >Save</button>
+
                             {!! Form::close() !!}
                           
                             {{-- ========================================================================================== --}}
@@ -143,6 +155,27 @@
                 </div>
             </div>
         </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $("#region").change(function() {
+        var regionId = $(this).val();
+  
+        // Fetch the list of countries for the selected region from the server
+        $.get("/get/districts/" + regionId, function(data) {
+          var districtSelect = $("#district");
+
+          // Clear the current list of countries
+          districtSelect.empty();
+  
+          // Add the new list of countries
+          $.each(data, function(key, value) {
+            districtSelect.append("<option value='" + value.district + "'>" + value.district + "</option>");
+          });
+        });
+      });
+    });
+  </script>
 @endsection
 @push('after-scripts')
 @endpush

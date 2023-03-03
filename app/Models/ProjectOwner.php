@@ -17,6 +17,7 @@ class ProjectOwner extends Model
         'dob',
         'nationality',
         'region',
+        'district',
         'gender'
     ];
     

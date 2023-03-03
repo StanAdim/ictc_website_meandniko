@@ -17,12 +17,14 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         // once done remember to comment banner ,Language , UserSeeder
         // 
-       $this->call(BannersSeeder::class);
-       $this->call(LanguagesSeeder::class);
-       $this->call(UserSeeder::class);
+        $this->call(BannersSeeder::class);
+        $this->call(LanguagesSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(GeneralConfiguationsSeeder::class);
         $this->call(RegionsTableSeeder::class);
         $this->call(RegistrationCategoriesSeeder::class);
+        $this->call(DistrictSeeder::class);
+        $this->call(ProjectCategorySeeder::class);
         Model::reguard();
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\DisableForeignKeys;
 use Database\TruncateTable;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RegistrationCategoriesSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class RegistrationCategoriesSeeder extends Seeder
     {
         $this->disableForeignKeys("categories");
         $this->delete('categories');
-        \DB::table('categories')->insert(array (
+        DB::table('categories')->insert(array (
             0 =>
                 array (
                     'id' => 1,
