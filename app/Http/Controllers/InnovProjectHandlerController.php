@@ -9,6 +9,7 @@ use App\Models\ProjectOwner;
 use App\Models\ProjectSupervisor;
 use App\Models\Region;
 use App\Models\Registration;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\ElseIf_;
 
@@ -149,6 +150,7 @@ class InnovProjectHandlerController extends Controller
                     'creatorEmail' => ['required'],
                     
                 ]); 
+                
 
                 $projectSupervisor = ProjectSupervisor::create($validatedData);
                 $projectSupervisor->save();

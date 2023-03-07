@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RegionsTableSeeder::class);
         $this->call(RegistrationCategoriesSeeder::class);
         $this->call(DistrictSeeder::class);
-        $this->call(ProjectCategorySeeder::class);
+        $this->call(ProjectCategorySeeder::class);        
+        $this->call(CountryTableSeeder::class);
         Model::reguard();
     }
 }

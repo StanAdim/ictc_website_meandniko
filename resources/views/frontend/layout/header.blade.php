@@ -63,8 +63,9 @@
                                             <a class="rd-dropdown-link" href="{{route('frontend.page', 'ict-professional')}}">ICT PROFESSIONAL</a>
                                         </li>
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="https://softcenter.ictc.go.tz" target="_blank">SOFTCENTRE</a>
-                                        </li>
+                                            <a class="rd-dropdown-link" href="{{route('digitalAccerationIndex')}}">IMBEJU ACCELERATION</a>
+                                        </li>  
+
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="https://iprs.ictc.go.tz/index.php/login" target="_blank">IPRS</a>
                                         </li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DigitalAccelerationController;
 use App\Http\Controllers\InnovationProjectController;
 use App\Http\Controllers\InnovProjectHandlerController;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,21 @@ Route::get('/dashboard/projects/supervisors',[InnovationProjectController::class
 Route::get('/get/districts/{regionId}',[InnovProjectHandlerController::class,'districtRequest']);
 
 Route::get('/registrations/Entities/get/districts/{regionId}',[InnovProjectHandlerController::class,'entitiesDistrictRequest']);
+
+
+//Auth Digital Imbeju Acceleration:
+Route::get('/ICT-business-acceleration-program-/crdb/imbeju',[DigitalAccelerationController::class,'index'])->name('digitalAccerationIndex');
+Route::get('/ICT-business-acceleration-program-/crdb/imbeju/apply',[DigitalAccelerationController::class,'createForm1'])->name('applyToProgram');
+
+Route::post('/Imbeju/crdb/applicant-details/store',[DigitalAccelerationController::class,'storeForm1'])->name('applicantDetails.store');
+Route::post('/Imbeju/crdb/applicant-founders/store',[DigitalAccelerationController::class,'storeForm2'])->name('foundersDetails.store');
+Route::post('/Imbeju/crdb/startup-details/store',[DigitalAccelerationController::class,'storeForm3'])->name('startupDetails.store');
+Route::post('/Imbeju/crdb/funding-details/store',[DigitalAccelerationController::class,'storeForm4'])->name('fundingExtra.store');
+
+
+Route::get('/Imbeju/crdb/apply-programme/more-on/founders',[DigitalAccelerationController::class,'createForm2'])->name('moreOnFounders');
+Route::get('/Imbeju/crdb/apply-programme/more-on/startup',[DigitalAccelerationController::class,'createForm3'])->name('moreOnStartup');
+
 
 // END PROJECTS
 // NATIONAL ENTITIES AND PROJECTS ROUTES
