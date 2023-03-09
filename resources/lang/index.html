@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Grab &amp; Move Timeline Slider</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section id="timeline">
+
+	<div class="timeline_top text-light position-relative">
+		<p class="decorative_word bold text-light text-uppercase d-none d-md-flex timeline_word">
+			<?php echo get_field('tl_word');?>	</p>
+		<div class="tl_line tl_line_left" aria-hidden="true">
+
+		</div>
+		<div class="tl_line tl_line_mid" aria-hidden="true">
+
+		</div>
+		<h2 class="h1 yellowspan text-center text-md-left text-uppercase timeline_header blueback">
+			Fancy Timeline Bro
+		</h2>
+		<div class="timeline_nav">
+			<button aria-label="timeline navigation previous" class="transition-fast timeline_nav_prev left">
+				<span class="blueback  material-symbols-outlined material-icons">
+					chevron_left
+				</span>
+			</button>
+			<button aria-label="timeline navigation next" class="transition-fast timeline_nav_next right">
+				<span class="blueback  material-symbols-outlined material-icons">
+					chevron_right
+				</span>
+			</button>
+		</div>
+	</div>
+	<div class="timeline_bottom bg-cover" style="background-image:url(<?php echo get_field('timeline_background');?>)">
+		<div class="green_overlay pb-md-5">
+			<div class="py-5 timeline_content position-relative">
+					<div class="timeline_fadebox d-none d-md-block" aria-hidden="true">
+		
+	</div>
+				<div class="timeline_wrap">
+				<div class="timeline_left_line" aria-hidden="true">
+
+				</div>
+				<div class="timeline_line" aria-hidden="true">
+
+				</div>
+				<div id="timeline_slider">
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							1990
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+							I was born extremily young for someone my age. My birth has generally been regarded as a mistake.
+						</p>
+					</div>
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							1993
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+						My parents divorce. My mom says it's my fault.
+						</p>
+					</div>
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							1995
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+						My mom sobers up and realizes I'm not a house cat. I taste human food for the first time.
+						</p>
+					</div>
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2000
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+	All computers crash and planes fall from the sky. T2K is upon us.  God have mercy on our souls.
+						</p>
+					</div>
+<!--------------------------------------->
+ 					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2000.1
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+						nvm that didn't happen
+						</p>
+					</div>
+<!--------------------------------------->
+ 					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2008
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+                I turn 18. I am now an adult. The world is at my fingertips and nothing can stop me. 
+						</p>
+					</div>
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2009
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+							nvm that didn't happen either.
+						</p>
+					</div>
+<!--------------------------------------->
+					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2012
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+							Nothing particularly interesting happens.
+						</p>
+					</div>
+<!--------------------------------------->
+          					<div class="timeline_slide px-4">
+						<p class="yellow timeline_date text-center m-0 h4">
+							2023
+						</p>
+						<div class="timeline_dot flex-center" aria-hidden="true">
+							<div class="timeline_dot_center">
+						</div>
+						</div>
+						<p class="timeline_item_content text-light mt-3">
+							I make a timeline with fun grab sliding and you come here to see it.
+						</p>
+					</div>
+<!--------------------------------------->
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

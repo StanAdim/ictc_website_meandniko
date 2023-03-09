@@ -295,7 +295,7 @@
 
 function makeTimer() {
 
-		var endTime = new Date("2023-03-07");			
+		var endTime = new Date("2023-04-10");			
 		endTime = (Date.parse(endTime) / 1000);
 
 		var now = new Date();

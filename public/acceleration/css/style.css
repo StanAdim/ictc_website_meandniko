@@ -8864,7 +8864,7 @@ textarea.form-control {
   visibility: hidden; }
 
 .bg-primary {
-  background: #1162fb !important; }
+  background: #4F80E2 !important; }
 
 .media-custom {
   background: #fff; }
@@ -8881,11 +8881,11 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-  padding: 7em 0;
+  padding: 0em 0;
   position: relative; }
   @media (max-width: 767.98px) {
     .ftco-section {
-      padding: 6em 0; } }
+      padding: 1em 0; } }
 
 .ftco-no-pt {
   padding-top: 0; }
