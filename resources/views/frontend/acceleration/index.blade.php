@@ -726,9 +726,9 @@ section {
           <circle cx="24" cy="537" r="8" transform="rotate(180 24 537)"/>
         </g>
         </g>
-    </svg>
-    </div>
-    <!-- snow ends here  -->
+      </svg>
+      </div>
+      <!-- snow ends here  -->  
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
